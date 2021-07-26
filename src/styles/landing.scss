@@ -6,13 +6,10 @@
   display: flex;
   margin-left: 5rem; //for navbar
   flex-direction: row;
-  > * {
-    box-sizing: border-box;
-  }
 }
 
 .game-container{
-  width: 70%;
+  width: calc(70% - 5rem);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -24,13 +21,6 @@
     border-radius: 20px;
   }
 }
-
-.info-container{
-  width: 30%;
-  height: 100%;
-  @include overlay(.08)
-}
-
 .divider{
   border-right: 1px solid rgba($color: #fff, $alpha: .2);
   height: 100%;
