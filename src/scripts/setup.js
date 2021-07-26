@@ -34,14 +34,16 @@ function _codeMirror(){
 //generate board
 function _createBoard(){
   let board = document.getElementById('board');
-
-  for(let i = 0; i < 20; i++){
-    for(let j = 0; j < 20; j++){
+  let arr = []
+  for(let i = 0; i < 25; i++){
+    arr.push([])
+    for(let j = 0; j < 25; j++){
       let cube = document.createElement('div');
       cube.classList.add('cube');
       board.appendChild(cube);
     }
   }
+  document.querySelectorAll('.cube')[312].style.backgroundColor = 'white';
 }
 
 

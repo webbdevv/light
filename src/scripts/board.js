@@ -1,3 +1,4 @@
+import Tile from './tile'
 export default class Board{
   constructor(size){
     this.size = size;
