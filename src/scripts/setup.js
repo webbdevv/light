@@ -1,6 +1,8 @@
+
 export default function setup(){
   //setup tabulation for textarea
-  document.getElementById('code-block').addEventListener('keydown', function(e) {
+  let code = document.getElementById('code-block')
+  code.addEventListener('keydown', function(e) {
     if (e.key == 'Tab') {
       e.preventDefault();
       var start = this.selectionStart;
@@ -15,6 +17,4 @@ export default function setup(){
         this.selectionEnd = start + 1;
     }
   });
-
-
 }
