@@ -27,3 +27,4 @@
 
 ## Libraries
   Three.js
+  Mocha testing framework
