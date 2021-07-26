@@ -1,4 +1,263 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap);
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
+  \*****************************************************************************************************************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin-left: 5rem;
+  flex-direction: row;
+}
+.container > * {
+  box-sizing: border-box;
+}
+
+.game-container {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-container .game {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  border-radius: 20px;
+}
+.game-container .game:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.info-container {
+  width: 30%;
+  height: 100%;
+}
+
+.divider {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .game, .info {
+    width: 80%;
+  }
+}
+.navbar {
+  position: relative;
+  background-color: #121212;
+  width: 5rem;
+  position: fixed;
+  height: 100vh;
+  color: rgba(255, 255, 255, 0.87);
+  transition: width 200ms ease;
+  z-index: 100;
+}
+.navbar:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(187, 134, 252, 0.09);
+  border-radius: 0;
+}
+.navbar:hover {
+  width: 18rem;
+}
+.navbar:hover .link-text {
+  display: block;
+}
+.navbar .navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar .nav-item {
+  width: 100%;
+}
+.navbar .nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  text-decoration: none;
+}
+.navbar .link-text {
+  display: none;
+  position: relative;
+  left: 0;
+}
+.navbar .nav-link svg {
+  width: 2rem;
+  margin: 0 1.5rem;
+}
+#brand-icon {
+  width: 48px;
+  height: 48px;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #121212;
+  overflow: hidden;
+}

@@ -1,0 +1,43 @@
+@import './variables-mixins/overlays.scss';
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin-left: 5rem; //for navbar
+  flex-direction: row;
+  > * {
+    box-sizing: border-box;
+  }
+}
+
+.game-container{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .game{
+    @include overlay(.05, 10px);
+    width: 700px;
+    height: 700px;
+    border-radius: 20px;
+  }
+}
+
+.info-container{
+  width: 30%;
+  height: 100%;
+}
+
+.divider{
+  border-right: 1px solid rgba($color: #fff, $alpha: .2);
+  height: 100%;
+}
+
+@media screen and (max-width: 1000px){
+  //resizing for smaller screens
+  .game, .info{
+    width: 80%;
+  }
+}

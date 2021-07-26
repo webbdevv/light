@@ -1,0 +1,50 @@
+@import './variables-mixins/colors.scss';
+.navbar{
+  @include overlay(.09, 0, $primary-purple);
+  background-color: #121212;
+  width: 5rem;
+  position: fixed;
+  height: 100vh;
+  color: $high-emphasis;
+  transition: width 200ms ease;
+  z-index: 100;
+  &:hover{
+    width: 18rem;
+    .link-text{
+      display: block;
+    }
+  }
+  .navbar-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-item{
+    width: 100%;
+  }
+  .nav-link{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+  }
+  .link-text{
+    display: none;
+    position: relative;
+    left: 0;
+  }
+  .nav-link svg{
+    width: 2rem;
+    margin: 0 1.5rem;
+  }
+  .brand{
+    // font-size: 1.8rem;
+  }
+}
+#brand-icon{
+  width: 48px;
+  height: 48px;
+}
