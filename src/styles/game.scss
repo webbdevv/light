@@ -1,0 +1,23 @@
+.cube{
+  width: 35px;
+  height: 35px;
+}
+
+.game-container {
+  width: calc(70% - 5rem);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #game {
+    @include overlay(.05, 10px);
+    width: 700px;
+    height: 700px;
+    border-radius: 20px;
+  }
+  #board{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

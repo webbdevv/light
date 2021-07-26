@@ -161,35 +161,6 @@ a {
   flex-direction: row;
 }
 
-.game-container {
-  width: calc(70% - 5rem);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.game-container .game {
-  position: relative;
-  width: 700px;
-  height: 700px;
-  border-radius: 20px;
-}
-.game-container .game:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.divider {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  height: 100%;
-}
-
 @media screen and (max-width: 1000px) {
   .game, .info {
     width: 80%;
@@ -371,6 +342,39 @@ a {
   border: none;
   resize: none;
   tab-size: 2;
+}
+
+.cube {
+  width: 35px;
+  height: 35px;
+}
+
+.game-container {
+  width: calc(70% - 5rem);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-container #game {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  border-radius: 20px;
+}
+.game-container #game:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.game-container #board {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 body {

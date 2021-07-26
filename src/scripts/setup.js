@@ -3,7 +3,8 @@ const THREE = require('three')
 export default function setup(){
   //Code mirror element
   _codeMirror()
-  _createScene()
+  _createBoard()
+  // _createScene()
 }
 
 
@@ -30,11 +31,30 @@ function _codeMirror(){
   codeMirror.setOption('theme', 'material-darker');
 }
 
+//generate board
+function _createBoard(){
+  let board = document.getElementById('board');
+
+  for(let i = 0; i < 20; i++){
+    for(let j = 0; j < 20; j++){
+      let cube = document.createElement('div');
+      cube.classList.add('cube');
+      board.appendChild(cube);
+    }
+  }
+}
+
+
+
+
+
+//3D
 function _createScene(){
   let game = document.getElementById('game')
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
   const renderer = new THREE.WebGLRenderer();
+  // const controls = OrbitControls(camera, renderer.domElement);
   renderer.setSize( 700, 700 );
   game.appendChild( renderer.domElement );
 
@@ -85,4 +105,3 @@ function _createScene(){
   const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
   scene.add(ambientLight);
 }
-
