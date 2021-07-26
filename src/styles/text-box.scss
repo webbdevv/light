@@ -53,9 +53,11 @@
     color: $medium-emphasis;
     font-family: 'Source Code Pro', monospace; //for coding look;
     font-size: 1rem;
+    line-height: 1.5rem;
     background-color: inherit;
     outline: none;
     border: none;
     resize: none;
+    tab-size: 2;
   }
 }

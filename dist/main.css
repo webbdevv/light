@@ -364,10 +364,12 @@ a {
   color: rgba(255, 255, 255, 0.6);
   font-family: "Source Code Pro", monospace;
   font-size: 1rem;
+  line-height: 1.5rem;
   background-color: inherit;
   outline: none;
   border: none;
   resize: none;
+  tab-size: 2;
 }
 
 body {

@@ -1,5 +1,5 @@
-const THREE = require('three');
 const assert = require('assert');
+const THREE = require('three');
 
 describe('The THREE object', function() {
   it('should have a defined BasicShadowMap constant', function() {
