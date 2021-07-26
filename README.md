@@ -3,8 +3,8 @@
 ## Description
   Outside the Box is a single player 'game' that features coding puzzles inside a 3-dimensional cube. The player will create functions to solve puzzles that will somehow move them closer towards their intended goal. 
   Users will not immediately learn how the game works and will have to play around inside the initial sandbox to learn the game.
-  The game will be played inside a completely dark box which will serve as the main 'scene'. The purpose of the game will be to figure out a way outside this box the player lives inside. For the purposes of a recruiter, instructions can be optionally given at the start.
-  
+  The game will be played inside a completely dark box which will serve as the main 'scene'. The purpose of the game will be to figure out a way outside this box the player lives inside. For the purposes of a recruiter, instructions can be optionally given at the start. Objectives will light up across the scene to guide users and the 'character' will be entirely white to provide contrast and allow players to see themselves clearly.
+
 ## Functionality
   * Users will be able to move around the scene.
   * Users will change the scene by moving through various areas.
@@ -17,6 +17,11 @@
   Extremely simple layout
   Game will take up ~60% viewport width on left side of screen.
   Code block / text will be open on the right side of the screen
+  ### Layout
+  ![Screen Shot 2021-07-26 at 8 24 48 AM](https://user-images.githubusercontent.com/67240903/127015572-f28eedfd-30ef-4d63-bca4-ca5f6e77c44b.png)
+  ### Example Puzzle
+  https://wireframe.cc/eyOkJ3
+  Users will be blocked from reaching the block on the top left quadrant and will need to create a function to rotate the grid that the player stands on to bypass the walls.
   
 ## Schedule
   * Monday - Setup project including Block, Scene, and Function/Action classes. Create setup screen where user will create their first function. This will be global.
@@ -27,3 +32,4 @@
 
 ## Libraries
   Three.js
+  Mocha testing framework
