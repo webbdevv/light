@@ -7,9 +7,12 @@
   <link rel="stylesheet" href="./dist/main.css" />
   <link rel="icon" href="./assets/images/purple-box.ico">
   <script src="./dist/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify-css.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify-html.js"></script>
+
+  <!-- Loading code mirror -->
+  <script src="./codemirror-5.62.2/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="./codemirror-5.62.2/lib/codemirror.css">
+  <link rel="stylesheet" href="./codemirror-5.62.2/theme/material-darker.css">
+  <script src="./codemirror-5.62.2/mode/javascript/javascript.js"></script>
   <title>Outside the Box </title>
 </head>
 <body>
@@ -69,12 +72,7 @@
           </div>
 
           <div class="body">
-            <div id="code-header">// Type all code below this line</div>
-              <textarea name="code-block" spellcheck="false" id="code-block" cols="30" rows="10">// Hello World</textarea>
-          </div>
-
-          <div class="footer">
-
+            <textarea id="code-block" name="code-block" spellcheck="false">Hello World</textarea>
           </div>
         </div>
       </div>

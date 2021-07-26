@@ -33,8 +33,8 @@
   }
   .body{
     font-family: 'Source Code Pro', monospace; //for coding look
-    @include overlay(.18, 0);
-    height: 64%;
+    @include overlay-bottom(.18, 8px, 8px);
+    height: 82%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -42,19 +42,18 @@
       padding: 4px 16px;
     }
   }
-  .footer{
-    height: 18%;
-  }
-  textarea{
+  .CodeMirror{
     padding: 0 16px;
     padding-top: 20px;
     z-index: 100;
     width: 100%;
     height: 100%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     color: $medium-emphasis;
     font-family: 'Source Code Pro', monospace; //for coding look;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: .92rem;
+    line-height: 1.2rem;
     background-color: inherit;
     outline: none;
     border: none;

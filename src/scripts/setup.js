@@ -17,4 +17,7 @@ export default function setup(){
         this.selectionEnd = start + 1;
     }
   });
+
+  let codeMirror = CodeMirror.fromTextArea(document.getElementById('code-block'), {})
+  codeMirror.setOption('theme', 'material-darker');
 }
