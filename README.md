@@ -3,7 +3,7 @@
 ## Description
   Outside the Box is a single player 'game' that features coding puzzles inside a 3-dimensional cube. The player will create functions to solve puzzles that will somehow move them closer towards their intended goal. 
   Users will not immediately learn how the game works and will have to play around inside the initial sandbox to learn the game.
-  The game will be played inside a completely dark box which will serve as the main 'scene'. The purpose of the game will be to figure out a way outside this box the player lives inside.
+  The game will be played inside a completely dark box which will serve as the main 'scene'. The purpose of the game will be to figure out a way outside this box the player lives inside. For the purposes of a recruiter, instructions can be optionally given at the start.
   
 ## Functionality
   * Users will be able to move around the scene.
