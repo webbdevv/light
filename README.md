@@ -24,3 +24,6 @@
   * Wednesday - Build out and style gameplay, allow users to move throughout the box and figure out text display functionality
   * Thursday - Add more puzzles and flesh out styling
   * Friday - Polish up design
+
+## Libraries
+  Three.js
