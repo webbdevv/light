@@ -9,7 +9,7 @@ export function test(){
   let spy = sinon.spy(str);
   let res = spy();
   expect(res).to.equal('asdf');
+  expect(1).to.satisfy(function(num) { return num > 0; } )
   expect(res).to.have.lengthOf(4);
-  console.log(spy)
   expect(spy.callCount).to.equal(1);
 }
