@@ -2,9 +2,9 @@
 import setup from './scripts/setup'
 import Plane from './scripts/plane';
 import Game from './scripts/game';
-
-const currentFunction = () => {
-
+import { test } from './scripts/test';
+const currentFunction = (fnc) => {
+  return new Function(fnc)
 }
 window.currentFunction = currentFunction;
 // basic setup for generating dynamic functions is as follows
@@ -17,3 +17,4 @@ document.addEventListener('DOMContentLoaded', () => {
     game.play()
   });
 })
+test();

@@ -6,11 +6,11 @@ export default class Game{
       textNodes: [
         {
           id: 1,
-          text: 'Hello Light, I welcome you to your new home for the next eternity. Enjoy your stay'
+          text: 'Hello Light, I welcome you to your new home. Enjoy your stay.'
         },
         {
           id: 2,
-          text: `We'll start simple today, reckoning with your mortality would be a good place to start.
+          text: `We'll start simple today, finding the meaning of life is a good place to start.
           Check the panel on the right and answer it well.`
         },
         {
@@ -23,7 +23,7 @@ export default class Game{
         },
         {
           id: 5,
-          text: `As it is now, life doesn't amount to so much. Let's give it some more meaning, shall we?`
+          text: `As you can see, life doesn't amount to much as it is now. Let's add some more spice, shall we?`
         }
       ],
       puzzles: [
@@ -36,8 +36,8 @@ export default class Game{
         },
         {
           id: 2,
-          template: `function death(){return}`,
-          header: `Making Death`,
+          template: `function Death(){return}`,
+          header: `The Meaning of Life`,
           correctReturn: 100,
         }
       ],
@@ -47,11 +47,14 @@ export default class Game{
     this.nextPage = this.nextPage.bind(this);
     this.generatePuzzle = this.generatePuzzle.bind(this);
     this.submitCode = this.submitCode.bind(this);
+    this.cleanupPuzzle = this.cleanupPuzzle.bind(this);
+    this.setupPuzzle = this.setupPuzzle.bind(this);
   }
 
   generateText(interval, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
     if(idx === 0) {
       document.getElementById('text-sender').innerHTML = '???'
+      document.getElementById('next-btn').style.display = 'inline-block';
       target.innerHTML = '';
       this.generatePuzzle()
     }
@@ -67,21 +70,31 @@ export default class Game{
   generatePuzzle(){
     switch(this.gameState.currentPage){
       case 1: //first puzzle
-        const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
-        document.getElementById('next-btn').style.display = 'none';
-        this.codeMirror.setValue(puzzle.template);
-        document.getElementById('function-header').innerHTML = puzzle.header;
-        let codeBtn = document.getElementById('submit-code')
-        codeBtn.innerHTML = 'Submit';
-        codeBtn.addEventListener('click', this.submitCode)
+        this.setupPuzzle();
+        break;
+      case 4:
+        this.setupPuzzle();
         break;
     }
   }
 
+  setupPuzzle(){
+    const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
+    document.getElementById('next-btn').style.display = 'none';
+    this.codeMirror.setValue(puzzle.template);
+    document.getElementById('function-header').innerHTML = puzzle.header;
+    let codeBtn = document.getElementById('submit-code')
+    codeBtn.innerHTML = 'Submit';
+    codeBtn.addEventListener('click', this.submitCode)
+  }
+
   cleanupPuzzle(){
+    document.getElementById('submit-code').removeEventListener('click', this.submitCode);
+    this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');
-    codeBtn = document.getElementById('submit-code').style.display = 'none'
+    document.getElementById('submit-code').innerHTML = '';
+    this.nextPage();
   }
 
   submitCode(){ 
@@ -89,7 +102,7 @@ export default class Game{
     code = extractFunction(code);
     let func = new Function(code);
     if(func() === this.gameState.puzzles[this.gameState.currentPuzzle].correctReturn){
-      console.log('success')
+      this.cleanupPuzzle();
     } else {
       console.log('failure');
     }
@@ -105,5 +118,9 @@ export default class Game{
   nextPage(){
     this.gameState.currentPage++;
     this.generateText(20);
+  }
+
+  test(){
+
   }
 }
