@@ -2,14 +2,15 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Board from './board'
 export default class Plane extends Board {
-  constructor(size = 15){
+  constructor(size = 10){
     super(size);
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // this.controls.enableZoom = false;
     this.setup = this.setup.bind(this);
     this.createBoard = this.createBoard.bind(this);
+    this.cleanup = this.cleanup.bind(this);
   }
 
   reset(){
@@ -69,30 +70,30 @@ export default class Plane extends Board {
     const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
     this.scene.add(ambientLight);
 
-    document.getElementById('play').addEventListener('click', () => {
-      while(this.scene.children.length > 0){
-        this.scene.remove(this.scene.children[0]);
-      }
-      //hide message and create board
-      document.querySelector('.game-message').classList.toggle('inactive');
-      this.createBoard()
-    })
+    document.getElementById('play').addEventListener('click', this.cleanup)
   }
 
+  cleanup(){
+    while(this.scene.children.length > 0){
+        this.scene.remove(this.scene.children[0]);
+    }
+    //hide message and create board
+    document.querySelector('.game-message').classList.toggle('inactive');
+  }
   animateScene(){
     const boardElement = document.getElementById('board')
     boardElement.append(this.renderer.domElement);
   }
 
   createBoard(){
-    const planeSize = 30
+    const planeSize = 20
 
     const fov = 45;
     const aspect = 1;  // the board size
     const near = 0.1;
     const far = 100;
     this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    this.camera.position.set(-8, 20, 40);
+    this.camera.position.set(0, 15, 30);
     this.camera.lookAt(0, 0, 0);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -118,7 +119,7 @@ export default class Plane extends Board {
 
     //ambient light
     const aColor = 0xFFFFFF;
-    const aIntensity = .2;
+    const aIntensity = .4;
     const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
     this.scene.add(ambientLight);
 
@@ -128,7 +129,7 @@ export default class Plane extends Board {
 
     //directional light
     const color = 0xFFFFFF;
-    const intensity = .55;
+    const intensity = .7;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(-10, 20, 40)
     this.scene.add(light);

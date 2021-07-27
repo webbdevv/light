@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-direction: column;
   #game {
     @include overlay(.05, 10px);
     width: 700px;
@@ -41,5 +41,22 @@
   }
   .game-message.inactive{
     display: none;
+  }
+  #game-textbox{
+    min-height: 120px;
+    padding: 12px 0;
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    width: 700px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.125rem;
+    line-height: 1.3rem;
+    letter-spacing: .5px;
+    font-weight: 200;
+    color: $high-emphasis;
+    #text-sender{
+      display: inline-block;
+      padding-bottom: 8px;
+    }
   }
 }
