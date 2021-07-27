@@ -325,6 +325,9 @@ a {
 .text-box .body #code-header {
   padding: 4px 16px;
 }
+.text-box .CodeMirror-gutter {
+  margin-right: 6px;
+}
 .text-box .CodeMirror {
   padding-top: 20px;
   z-index: 100;
@@ -335,12 +338,6 @@ a {
   color: rgba(255, 255, 255, 0.6);
   font-size: 15px;
   background-color: inherit;
-  outline: none;
-  border: none;
-  resize: none;
-}
-.text-box .CodeMirror span {
-  margin-left: 8px;
 }
 
 .cube {

@@ -9,8 +9,12 @@ export default function setup(){
 function _codeMirror(){
   let codeMirror = CodeMirror.fromTextArea(document.getElementById('code-block'), {
     lineNumbers: true,
-    cursorHeight: 1,
     mode: 'javascript',
+    styleActiveLine: true,
+    lineNumbers: true,
+    matchBrackets: true,
+    foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
   })
   codeMirror.setOption('theme', 'material-darker');
 }
