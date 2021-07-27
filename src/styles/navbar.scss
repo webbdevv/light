@@ -1,7 +1,7 @@
 @import './variables-mixins/colors.scss';
 .navbar{
   box-sizing: content-box;
-  @include overlay(.09, 0, $primary-purple);
+  @include overlay(.06, 0, $primary-purple);
   background-color: #121212;
   width: 5rem;
   position: fixed;
@@ -16,7 +16,7 @@
       color: rgba($color: #fff, $alpha: 1);
     }
     svg{
-      fill: rgba($color: $primary-purple, $alpha: .8);
+      fill: rgba($color: $primary-purple, $alpha: 1);
       filter: grayscale(0%) opacity(1);
     }
   }

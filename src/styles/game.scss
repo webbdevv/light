@@ -18,6 +18,28 @@
   }
   #board{
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .game-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 32px;
+    margin-top: 4rem;
+    font-weight: 200;
+    position: absolute;
+    color: $high-emphasis;
+    .game-description{
+      display: flex;
+      justify-content: center;
+      padding: 32px;
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+  .game-message.inactive{
+    display: none;
   }
 }

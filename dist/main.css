@@ -184,7 +184,7 @@ a {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(187, 134, 252, 0.09);
+  background: rgba(187, 134, 252, 0.06);
   border-radius: 0;
 }
 .navbar:hover {
@@ -195,7 +195,7 @@ a {
   color: white;
 }
 .navbar:hover svg {
-  fill: rgba(187, 134, 252, 0.8);
+  fill: #bb86fc;
   filter: grayscale(0%) opacity(1);
 }
 .navbar .navbar-nav {
@@ -374,7 +374,29 @@ a {
 }
 .game-container #board {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+.game-container .game-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Source Code Pro", monospace;
+  font-size: 32px;
+  margin-top: 4rem;
+  font-weight: 200;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.87);
+}
+.game-container .game-message .game-description {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  font-size: 22px;
+  line-height: 30px;
+}
+.game-container .game-message.inactive {
+  display: none;
 }
 
 body {

@@ -1,10 +1,8 @@
-const THREE = require('three')
+const THREE = require('three');
 
 export default function setup(){
   //Code mirror element
   _codeMirror()
-  _createBoard()
-  // _createScene()
 }
 
 
@@ -31,79 +29,67 @@ function _codeMirror(){
   codeMirror.setOption('theme', 'material-darker');
 }
 
-//generate board
-function _createBoard(){
-  let board = document.getElementById('board');
-  let arr = []
-  for(let i = 0; i < 25; i++){
-    arr.push([])
-    for(let j = 0; j < 25; j++){
-      let cube = document.createElement('div');
-      cube.classList.add('cube');
-      board.appendChild(cube);
-    }
-  }
-  document.querySelectorAll('.cube')[312].style.backgroundColor = 'white';
-}
-
-
-
-
-
 //3D
-function _createScene(){
-  let game = document.getElementById('game')
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
-  const renderer = new THREE.WebGLRenderer();
-  // const controls = OrbitControls(camera, renderer.domElement);
-  renderer.setSize( 700, 700 );
-  game.appendChild( renderer.domElement );
+// function _createScene(){
+//   let game = document.getElementById('game')
+//   const scene = new THREE.Scene();
+//   const camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
+//   const renderer = new THREE.WebGLRenderer();
+//   renderer.setSize( 700, 700 );
+//   game.appendChild( renderer.domElement );
 
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  //This material is affected by lights
-  const material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
-  const cube = new THREE.Mesh( geometry, material);
-  scene.add( cube );
-  camera.position.z = 5;
+//   const geometry = new THREE.BoxGeometry(1, 1, 1);
+//   //This material is affected by lights
+//   const material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+//   const cube = new THREE.Mesh( geometry, material);
+//   scene.add( cube );
+//   camera.position.z = 5;
   
-  function resizeRendererToDisplaySize(renderer){
-    const canvas = renderer.domElement;
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    const needResize = canvas.width !== width || canvas.height !== height;
-    if (needResize) {
-      renderer.setSize(width, height, false);
-    }
-    return needResize;
-  }
+//   function resizeRendererToDisplaySize(renderer){
+//     const canvas = renderer.domElement;
+//     const width = canvas.clientWidth;
+//     const height = canvas.clientHeight;
+//     const needResize = canvas.width !== width || canvas.height !== height;
+//     if (needResize) {
+//       renderer.setSize(width, height, false);
+//     }
+//     return needResize;
+//   }
   
-  const animate = () => {
-    requestAnimationFrame( animate );
+//   const animate = () => {
+//     requestAnimationFrame( animate );
 
-    //update aspect in case of object being outside fustrum
-    if (resizeRendererToDisplaySize(renderer)) {
-      const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    }
+//     //update aspect in case of object being outside fustrum
+//     if (resizeRendererToDisplaySize(renderer)) {
+//       const canvas = renderer.domElement;
+//       camera.aspect = canvas.clientWidth / canvas.clientHeight;
+//       camera.updateProjectionMatrix();
+//     }
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  }
-  animate()
+//     cube.rotation.x += 0.01;
+//     cube.rotation.y += 0.01;
+//     renderer.render(scene, camera);
+//   }
+//   animate()
 
-  //add light
-  const color = 0xFFFFFF;
-  const intensity = .7;
-  const light = new THREE.DirectionalLight(color, intensity);
-  light.position.set(-1, 2, 4)
-  scene.add(light);
+//   //add light
+//   const color = 0xFFFFFF;
+//   const intensity = .55;
+//   const light = new THREE.DirectionalLight(color, intensity);
+//   light.position.set(-1, 2, 4)
+//   scene.add(light);
 
-  //ambient
-  const aColor = 0xFFFFFF;
-  const aIntensity = .3;
-  const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
-  scene.add(ambientLight);
-}
+//   //ambient
+//   const aColor = 0xFFFFFF;
+//   const aIntensity = .3;
+//   const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
+//   scene.add(ambientLight);
+
+//   document.getElementById('play').addEventListener('click', () => {
+//     while(scene.children.length > 0){
+//       scene.remove(scene.children[0]);
+//     }
+//     //hide message and create board
+//     document.querySelector('.game-message').classList.toggle('inactive');
+//   })
+// }

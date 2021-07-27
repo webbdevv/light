@@ -15,7 +15,6 @@
 
 @mixin overlay-bottom($opacity: .05, $border-rad-left: 0, $border-rad-right: 0, $overlay-color: #FFF) {
   position: relative;
-
   &:before {
     content: "";
     position: absolute;
