@@ -27,3 +27,18 @@
     border-bottom-right-radius: $border-rad-right;
   }
 }
+
+@mixin overlay-top($opacity: .05, $border-rad-left: 0, $border-rad-right: 0, $overlay-color: #FFF) {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba($color: $overlay-color, $alpha: $opacity);
+    border-top-left-radius: $border-rad-left;
+    border-top-right-radius: $border-rad-right;
+  }
+}

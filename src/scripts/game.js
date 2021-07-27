@@ -10,18 +10,26 @@ export default class Game{
         {
           id: 2,
           text: "We'll start simple today, reckoning with your mortality would be a good place to start."
+        },
+      ],
+      puzzles: [
+        {
+          id: 1,
+          template: `function answerToLife(meaning = ''){ meaning = 'DN'; return meaning; }`,
+          header: 'Life, The Universe, and Everything',
         }
       ],
-      currentPage: 0
+      currentPage: 0,
+      currentPuzzle: 0,
     }
     this.nextPage = this.nextPage.bind(this);
-    this.hideBtn = this.hideBtn.bind(this);
+    this.generatePuzzle = this.generatePuzzle.bind(this);
   }
   generateText(interval, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
     if(idx === 0) {
       document.getElementById('text-sender').innerHTML = '???'
       target.innerHTML = '';
-      this.hideBtn()
+      this.generatePuzzle()
     }
     if(idx < text.length){
       target.innerHTML += text[idx++];
@@ -32,11 +40,14 @@ export default class Game{
     }
   }
 
-  hideBtn(){
+  generatePuzzle(){
     switch(this.gameState.currentPage){
       case 1: //first puzzle
+        const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
         document.getElementById('next-btn').style.display = 'none';
-        this.codeMirror.setValue('let a = 123');
+        this.codeMirror.setValue(puzzle.template);
+        document.getElementById('function-header').innerHTML = puzzle.header;
+        document.getElementById('submit-code').innerHTML = 'Submit';
         break;
     }
   }

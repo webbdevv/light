@@ -13,8 +13,7 @@ function _codeMirror(){
     styleActiveLine: true,
     lineNumbers: true,
     matchBrackets: true,
-    foldGutter: true,
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    lineWrapping: true,
   })
   codeMirror.setOption('theme', 'material-darker');
 }

@@ -19,22 +19,21 @@
   flex-direction: column;
   justify-content: center;
   color: $high-emphasis;
-  * {
-    // color: $high-emphasis;
-    // border: 1px solid red
-  }
-  .header{
+  #function-header{
     padding: 16px 0;
-    height: 18%;
+    height: 10%;
     display: flex;
     justify-content: center;
-    font-weight: 600;
-    font-size: 1.5rem;
+    align-items: center;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2rem;
+    @include overlay-top(.1, 8px, 8px, $primary-purple)
   }
   .body{
     font-family: 'Source Code Pro', monospace; //for coding look
     @include overlay-bottom(.18, 8px, 8px);
-    height: 82%;
+    height: 90%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -53,7 +52,20 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     color: $medium-emphasis;
-    font-size: 15px;
+    font-size: .9rem;
+    font-family: 'Source Code Pro', monospace;
     background-color: inherit;
+  }
+  #submit-code{
+    position: absolute;
+    border: none;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1rem;
+    outline: none;
+    color: $high-emphasis;
+    background-color: inherit;
+    z-index: 101;
+    bottom: 10px;
+    right: 10px;
   }
 }

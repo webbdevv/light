@@ -295,18 +295,32 @@ a {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 8px;
 }
-.text-box .header {
+.text-box #function-header {
   padding: 16px 0;
-  height: 18%;
+  height: 10%;
   display: flex;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1.5rem;
+  align-items: center;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.2rem;
+  position: relative;
+}
+.text-box #function-header:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(187, 134, 252, 0.1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .text-box .body {
   font-family: "Source Code Pro", monospace;
   position: relative;
-  height: 82%;
+  height: 90%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -336,8 +350,21 @@ a {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
+  font-size: 0.9rem;
+  font-family: "Source Code Pro", monospace;
   background-color: inherit;
+}
+.text-box #submit-code {
+  position: absolute;
+  border: none;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+  outline: none;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: inherit;
+  z-index: 101;
+  bottom: 10px;
+  right: 10px;
 }
 
 .cube {

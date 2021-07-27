@@ -1,8 +1,14 @@
 //Add threejs as a conventional name
-const THREE = require('three');
 import setup from './scripts/setup'
 import Plane from './scripts/plane';
 import Game from './scripts/game';
+
+const currentFunction = (data) => {
+  return new Function(data);
+}
+
+// basic setup for generating dynamic functions is as follows
+console.log(currentFunction('return 102;')())
 
 document.addEventListener('DOMContentLoaded', () => {
   setup(); //assign scene to new variable to do more with it in the future
