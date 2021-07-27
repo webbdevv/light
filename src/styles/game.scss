@@ -60,3 +60,16 @@
     }
   }
 }
+
+#next-btn{
+  background-color: inherit;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  color: $high-emphasis;
+  position: relative;
+  left: 30%;
+  top: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

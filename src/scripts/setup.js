@@ -7,25 +7,11 @@ export default function setup(){
 
 
 function _codeMirror(){
-  let code = document.getElementById('code-block')
-  //setup tabulation for textarea
-  code.addEventListener('keydown', function(e) {
-    if (e.key == 'Tab') {
-      e.preventDefault();
-      var start = this.selectionStart;
-      var end = this.selectionEnd;
-
-      // set textarea value to: text before caret + tab + text after caret
-      this.value = this.value.substring(0, start) +
-        "\t" + this.value.substring(end);
-
-      // put caret at right position again
-      this.selectionStart =
-        this.selectionEnd = start + 1;
-    }
-  });
-
-  let codeMirror = CodeMirror.fromTextArea(document.getElementById('code-block'), {})
+  let codeMirror = CodeMirror.fromTextArea(document.getElementById('code-block'), {
+    lineNumbers: true,
+    cursorHeight: 1,
+    mode: 'javascript',
+  })
   codeMirror.setOption('theme', 'material-darker');
 }
 

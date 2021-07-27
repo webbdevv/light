@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   plane.setup();    //create rotating cube and utilities necessary for 3d rendering
   document.getElementById('play').addEventListener('click', () => {
     const game = new Game();
-    game.generateText('I said hello to the little llama passing by through the road.', 25);
+    game.play()
   });
 })
 

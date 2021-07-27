@@ -326,7 +326,6 @@ a {
   padding: 4px 16px;
 }
 .text-box .CodeMirror {
-  padding: 0 16px;
   padding-top: 20px;
   z-index: 100;
   width: 100%;
@@ -334,14 +333,14 @@ a {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   color: rgba(255, 255, 255, 0.6);
-  font-family: "Source Code Pro", monospace;
-  font-size: 0.92rem;
-  line-height: 1.2rem;
+  font-size: 15px;
   background-color: inherit;
   outline: none;
   border: none;
   resize: none;
-  tab-size: 2;
+}
+.text-box .CodeMirror span {
+  margin-left: 8px;
 }
 
 .cube {
@@ -415,6 +414,19 @@ a {
 .game-container #game-textbox #text-sender {
   display: inline-block;
   padding-bottom: 8px;
+}
+
+#next-btn {
+  background-color: inherit;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.87);
+  position: relative;
+  left: 30%;
+  top: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 body {

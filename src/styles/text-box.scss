@@ -43,7 +43,6 @@
     }
   }
   .CodeMirror{
-    padding: 0 16px;
     padding-top: 20px;
     z-index: 100;
     width: 100%;
@@ -51,13 +50,13 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     color: $medium-emphasis;
-    font-family: 'Source Code Pro', monospace; //for coding look;
-    font-size: .92rem;
-    line-height: 1.2rem;
+    font-size: 15px;
     background-color: inherit;
     outline: none;
     border: none;
     resize: none;
-    tab-size: 2;
+    span{
+      margin-left: 8px;
+    }
   }
 }
