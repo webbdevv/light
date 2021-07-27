@@ -1,18 +1,13 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Board from './board'
-
 export default class Plane extends Board {
   constructor(size = 15){
     super(size);
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
     this.renderer = new THREE.WebGLRenderer();
-    this.canvas = this.renderer.domElement;
-    this.controls = new OrbitControls(this.camera, this.canvas);
-    this.controls.target.set(0, 5, 0);
-    this.controls.update();
-    this.controls.enableZoom = false;
+    // this.controls.enableZoom = false;
     this.setup = this.setup.bind(this);
     this.createBoard = this.createBoard.bind(this);
   }
@@ -89,15 +84,53 @@ export default class Plane extends Board {
   }
 
   createBoard(){
-    const geometry = new THREE.BoxGeometry(10, .2, 10);
-    const material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
-    const plane = new THREE.Mesh(geometry, material);
-    this.camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
-    this.camera.position.set(0, 5, 15)
+    const planeSize = 30
 
-    this.scene.add( plane );
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    const fov = 45;
+    const aspect = 1;  // the board size
+    const near = 0.1;
+    const far = 100;
+    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    this.camera.position.set(-8, 20, 40);
+    this.camera.lookAt(0, 0, 0);
+
+    const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('../../assets/images/checker.png');
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.magFilter = THREE.NearestFilter;
+    const repeats = planeSize / 2;
+    texture.repeat.set(repeats, repeats);
+
+    const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+    const planeMat = new THREE.MeshPhongMaterial({
+      map: texture,
+      side: THREE.DoubleSide,
+    });
+    const mesh = new THREE.Mesh(planeGeo, planeMat);
+    mesh.rotation.x = Math.PI * -.5;
+    this.scene.add(mesh);
+    //ambient
+    const aColor = 0xFFFFFF;
+    const aIntensity = .8;
+    const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
     this.scene.add(ambientLight);
+
+    const plane = new THREE.Mesh(planeGeo, planeMat);
+    plane.rotation.x = Math.PI * -.5;
+    this.scene.add(plane)
+
+    //creating player cube
+    const cubeSize = 2;
+    const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+    const cubeMat = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+    const cube = new THREE.Mesh(cubeGeo, cubeMat);
+    cube.position.set(0, 1, 0);
+    this.scene.add(cube);
     // const animate = () => {
     //   requestAnimationFrame( animate );
 
