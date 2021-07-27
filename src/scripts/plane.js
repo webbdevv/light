@@ -7,6 +7,7 @@ export default class Plane extends Board {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
     this.renderer = new THREE.WebGLRenderer();
+    this.canvas = this.renderer.domElement;
     // this.controls.enableZoom = false;
     this.setup = this.setup.bind(this);
     this.createBoard = this.createBoard.bind(this);
@@ -16,33 +17,36 @@ export default class Plane extends Board {
 
   }
 
+  resizeRendererToDisplaySize(renderer){
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+
   setup(){
     let game = document.getElementById('game')
     this.renderer.setSize( 700, 700 );
     game.appendChild( this.renderer.domElement );
+
+    this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
+
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     //This material is affected by lights
     const material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
     const cube = new THREE.Mesh( geometry, material);
     this.scene.add( cube );
     this.camera.position.z = 5;
-    
-    function resizeRendererToDisplaySize(renderer){
-      const canvas = renderer.domElement;
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-      const needResize = canvas.width !== width || canvas.height !== height;
-      if (needResize) {
-        renderer.setSize(width, height, false);
-      }
-      return needResize;
-    }
 
     const animate = () => {
       requestAnimationFrame( animate );
 
       //update aspect in case of object being outside fustrum
-      if (resizeRendererToDisplaySize(this.renderer)) {
+      if (this.resizeRendererToDisplaySize(this.renderer)) {
         const canvas = this.renderer.domElement;
         this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
         this.camera.updateProjectionMatrix();
@@ -114,9 +118,10 @@ export default class Plane extends Board {
     const mesh = new THREE.Mesh(planeGeo, planeMat);
     mesh.rotation.x = Math.PI * -.5;
     this.scene.add(mesh);
-    //ambient
+
+    //ambient light
     const aColor = 0xFFFFFF;
-    const aIntensity = .8;
+    const aIntensity = .2;
     const ambientLight = new THREE.AmbientLight(aColor, aIntensity);
     this.scene.add(ambientLight);
 
@@ -124,13 +129,26 @@ export default class Plane extends Board {
     plane.rotation.x = Math.PI * -.5;
     this.scene.add(plane)
 
+    //directional light
+    const color = 0xFFFFFF;
+    const intensity = .55;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-10, 20, 40)
+    this.scene.add(light);
+
     //creating player cube
     const cubeSize = 2;
     const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-    const cubeMat = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
+    const cubeMat = new THREE.MeshPhongMaterial({ color: 0xFFFFFF, });
     const cube = new THREE.Mesh(cubeGeo, cubeMat);
     cube.position.set(0, 1, 0);
     this.scene.add(cube);
+
+    if (this.resizeRendererToDisplaySize(this.renderer)) {
+      const canvas = this.renderer.domElement;
+      this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      this.camera.updateProjectionMatrix();
+    }
     // const animate = () => {
     //   requestAnimationFrame( animate );
 
