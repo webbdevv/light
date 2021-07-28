@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   plane.setup();    //create rotating cube and utilities necessary for 3d rendering
   document.getElementById('play').addEventListener('click', () => {
     const game = new Game();
-    game.play()
+    game.play();
+    document.getElementById('play').style.display = 'none'
   });
 })

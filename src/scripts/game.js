@@ -38,9 +38,12 @@ export default class Game{
     switch(this.gameState.currentPage){
       case 1: //first puzzle
         this.setupPuzzle();
+        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 2, ch: 1000}, {readOnly: true})
         break;
       case 4:
         this.setupPuzzle();
+        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.markText({line: 9, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
     }
   }
@@ -69,7 +72,7 @@ export default class Game{
     let code = document.querySelector('.CodeMirror').CodeMirror.doc.getValue()
     code = extractFunction(code);
     let func = window.currentFunction(code, 'a', 'b', 'c');
-    if(func() === this.gameState.puzzles[this.gameState.currentPuzzle].correctReturn && testarr[this.gameState.currentPuzzle](func).length <= 0){
+    if(testarr[this.gameState.currentPuzzle](func).length <= 0){
       this.cleanupPuzzle();
     } else {
       console.log('failure');
@@ -81,6 +84,7 @@ export default class Game{
     this.generateText(20);
     document.getElementById('next-btn').innerHTML = 'Next';
     document.getElementById('next-btn').addEventListener('click', this.nextPage)
+    document.getElementById('play').removeEventListener('click', this.play)
   }
 
   nextPage(){

@@ -14,6 +14,7 @@ function _codeMirror(){
     lineNumbers: true,
     matchBrackets: true,
     lineWrapping: true,
+    tabSize: 2,
   })
   codeMirror.setOption('theme', 'material-darker');
 }

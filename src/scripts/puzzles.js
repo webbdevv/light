@@ -1,18 +1,17 @@
+import { entityStr1 } from './entity'
 let puzzles = [
   {
     id: 1,
-    template: `function answerToLife(){return}`,
+    template: `function answerToLife(){\n\t//fill in below\n\treturn\n}`,
     header: 'Life, The Universe, and Everything',
     hint: `The Hitchhiker's Guide to the Galaxy`,
     userWritten: '',
-    correctReturn: 42,
   },
   {
     id: 2,
-    template: `function Death(){return}`,
-    header: `The Meaning of Life`,
+    template: `${entityStr1}`,
+    header: `Death`,
     userWritten: '',
-    correctReturn: 100,
   }
 ]
 
