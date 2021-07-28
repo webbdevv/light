@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setup(); //assign scene to new variable to do more with it in the future
   const plane = new Plane();
   plane.setup();    //create rotating cube and utilities necessary for 3d rendering
+  window.puzzleAnswers = [];
   document.getElementById('play').addEventListener('click', () => {
     const game = new Game();
     game.play();

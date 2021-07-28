@@ -1,13 +1,31 @@
 import { extractFunction } from "./util";
 import { testarr } from './test';
-import puzzles from './puzzles'
 import textnodes from './textnodes'
+import { createTemplates } from './entity'
+
 export default class Game{
   constructor(){
     this.codeMirror = document.querySelector('.CodeMirror').CodeMirror
     this.gameState = {
       textNodes: textnodes,
-      puzzles: puzzles,
+      puzzles: [
+        {
+          id: 1,
+          template: `function answerToLife(){\n\t//fill in below\n\treturn\n}`,
+          header: 'Life, The Universe, and Everything',
+          hint: `The Hitchhiker's Guide to the Galaxy`,
+        },
+        {
+          id: 2,
+          template: '',
+          header: `Death`,
+        },
+        {
+          id: 3,
+          template: '',
+          header: `Enti-cide?`,
+        }
+      ],
       currentPage: 0,
       currentPuzzle: 0,
     }
@@ -45,12 +63,15 @@ export default class Game{
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 9, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
+      case 5:
+        this.setupPuzzle();
     }
   }
 
   setupPuzzle(){
     const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
     document.getElementById('next-btn').style.display = 'none';
+    (puzzle.template === '' ? puzzle.template = createTemplates(this.gameState) : puzzle.template)
     this.codeMirror.setValue(puzzle.template);
     document.getElementById('function-header').innerHTML = puzzle.header;
     let codeBtn = document.getElementById('submit-code')
@@ -60,7 +81,6 @@ export default class Game{
 
   cleanupPuzzle(){
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
-    this.gameState.puzzles[this.gameState.currentPuzzle].userWritten = this.codeMirror.doc.value
     this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');
@@ -73,6 +93,7 @@ export default class Game{
     code = extractFunction(code);
     let func = window.currentFunction(code, 'a', 'b', 'c');
     if(testarr[this.gameState.currentPuzzle](func).length <= 0){
+      this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       this.cleanupPuzzle();
     } else {
       console.log('failure');
