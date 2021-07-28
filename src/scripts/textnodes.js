@@ -5,16 +5,16 @@ let textnodes = [
   },
   {
     id: 2,
-    text: `We'll start simple today, finding the meaning of life is a good place to start.
+    text: `We'll start simple today, finding the meaning of life is a good start.
     Check the panel on the right and answer it well.`
   },
   {
     id: 3,
-    text: `Not too difficult right? Life is so simple, really.`
+    text: `Not too difficult right? Life is so simple, after all.`
   },
   {
     id: 4,
-    text: `Well then Light, we've had our fun. Time to start setting the stage. As you can see, life doesn't amount to much as it is now. Let's add some more spice, shall we?`
+    text: `Well then Light, we've had our fun. Time to start setting the stage. As you can see, life doesn't amount to much quite yet. Let's add some more spice, shall we?`
   },
   {
     id: 5,
@@ -22,7 +22,11 @@ let textnodes = [
   },
   {
     id: 6,
-    text: `Lovely, now that things can die. It follows that we can kill them. I've gone through the liberty of creating that for you, but we need you to do the application.`
+    text: `Lovely, now that things can die. It follows that we can kill them. I've gone through the liberty of creating that for you, but we need you to do the application. Oh and make it recursive as well.`
+  },
+  {
+    id: 7,
+    text: `Ah, refreshing.`
   }
 ]
 export default textnodes;

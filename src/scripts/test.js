@@ -19,7 +19,7 @@ function test1(func){
 
 function test2(func){
   let spy = sinon.spy(func);
-  let entity = new Entity;
+  let entity = new Entity();
   spy = spy.bind(entity);
   let errors = [];
   try{
@@ -33,4 +33,25 @@ function test2(func){
   }
   return errors;
 }
-export const testarr = [test1, test2]
+
+function test3(func){
+  let spy = sinon.spy(func);
+  let errors = [];
+  let a = new Entity();
+  let b = new Entity();
+  let c = new Entity();
+  window.entities = [a, b, c];
+  window.destroyAll = spy;
+  try{
+    spy(entities);
+    expect(window.entities).to.be.empty;
+    expect(spy.callCount).to.be.above(3);
+    expect(spy.callCount).to.be.below(5);
+  } catch(err){
+    console.log(err)
+    errors.push(err)
+  }
+  return errors;
+}
+
+export const testarr = [test1, test2, test3]

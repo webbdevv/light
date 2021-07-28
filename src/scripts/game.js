@@ -1,7 +1,7 @@
 import { extractFunction } from "./util";
 import { testarr } from './test';
 import textnodes from './textnodes'
-import { createTemplates } from './entity'
+import { createTemplates, createAnswers } from './templates'
 
 export default class Game{
   constructor(){
@@ -11,7 +11,7 @@ export default class Game{
       puzzles: [
         {
           id: 1,
-          template: `function answerToLife(){\n\t//fill in below\n\treturn\n}`,
+          template: '',
           header: 'Life, The Universe, and Everything',
           hint: `The Hitchhiker's Guide to the Galaxy`,
         },
@@ -57,6 +57,7 @@ export default class Game{
       case 1: //first puzzle
         this.setupPuzzle();
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 2, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.markText({line: 4, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         break;
       case 4:
         this.setupPuzzle();
@@ -64,6 +65,7 @@ export default class Game{
         this.codeMirror.doc.markText({line: 9, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
       case 5:
+        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 15, ch: 1000}, {readOnly: true})
         this.setupPuzzle();
     }
   }
@@ -71,7 +73,7 @@ export default class Game{
   setupPuzzle(){
     const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
     document.getElementById('next-btn').style.display = 'none';
-    (puzzle.template === '' ? puzzle.template = createTemplates(this.gameState) : puzzle.template)
+    puzzle.template = createAnswers(this.gameState)
     this.codeMirror.setValue(puzzle.template);
     document.getElementById('function-header').innerHTML = puzzle.header;
     let codeBtn = document.getElementById('submit-code')
@@ -91,7 +93,7 @@ export default class Game{
   submitCode(){ 
     let code = document.querySelector('.CodeMirror').CodeMirror.doc.getValue()
     code = extractFunction(code);
-    let func = window.currentFunction(code, 'a', 'b', 'c');
+    let func = window.currentFunction(code);
     if(testarr[this.gameState.currentPuzzle](func).length <= 0){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       this.cleanupPuzzle();
