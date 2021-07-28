@@ -1,15 +1,19 @@
-import chai, { expect, should } from 'chai'
+import chai, { expect, should, assert } from 'chai'
 import sinon from '../../node_modules/sinon/pkg/sinon-esm'
 
-function str(){
-  return 'asdf';
+function test1(func){
+  let spy = sinon.spy(func);
+  let errors = [];
+  try{
+    expect(func).to.exist();
+    let a = spy();
+    expect(a).to.equal(42)
+    expect(spy.callCount).to.equal(1);
+    expect(spy).to.not.throw(Error)
+  } catch(err){
+    errors.push(err)
+  }
+  return errors
 }
 
-export function test(){
-  let spy = sinon.spy(str);
-  let res = spy();
-  expect(res).to.equal('asdf');
-  expect(1).to.satisfy(function(num) { return num > 0; } )
-  expect(res).to.have.lengthOf(4);
-  expect(spy.callCount).to.equal(1);
-}
+export const testarr = [test1]

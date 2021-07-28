@@ -1,46 +1,13 @@
 import { extractFunction } from "./util";
+import { testarr } from './test';
+import puzzles from './puzzles'
+import textnodes from './textnodes'
 export default class Game{
   constructor(){
     this.codeMirror = document.querySelector('.CodeMirror').CodeMirror
     this.gameState = {
-      textNodes: [
-        {
-          id: 1,
-          text: 'Hello Light, I welcome you to your new home. Enjoy your stay.'
-        },
-        {
-          id: 2,
-          text: `We'll start simple today, finding the meaning of life is a good place to start.
-          Check the panel on the right and answer it well.`
-        },
-        {
-          id: 3,
-          text: `Not too difficult right? Life is so simple, really.`
-        },
-        {
-          id: 4,
-          text: `Well then Light, we've had our fun. Time to start setting the stage.`
-        },
-        {
-          id: 5,
-          text: `As you can see, life doesn't amount to much as it is now. Let's add some more spice, shall we?`
-        }
-      ],
-      puzzles: [
-        {
-          id: 1,
-          template: `function answerToLife(){return}`,
-          header: 'Life, The Universe, and Everything',
-          hint: `The Hitchhiker's Guide to the Galaxy`,
-          correctReturn: 42,
-        },
-        {
-          id: 2,
-          template: `function Death(){return}`,
-          header: `The Meaning of Life`,
-          correctReturn: 100,
-        }
-      ],
+      textNodes: textnodes,
+      puzzles: puzzles,
       currentPage: 0,
       currentPuzzle: 0,
     }
@@ -90,6 +57,7 @@ export default class Game{
 
   cleanupPuzzle(){
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
+    this.gameState.puzzles[this.gameState.currentPuzzle].userWritten = this.codeMirror.doc.value
     this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');
@@ -100,8 +68,8 @@ export default class Game{
   submitCode(){ 
     let code = document.querySelector('.CodeMirror').CodeMirror.doc.getValue()
     code = extractFunction(code);
-    let func = new Function(code);
-    if(func() === this.gameState.puzzles[this.gameState.currentPuzzle].correctReturn){
+    let func = window.currentFunction(code, 'a', 'b', 'c');
+    if(func() === this.gameState.puzzles[this.gameState.currentPuzzle].correctReturn && testarr[this.gameState.currentPuzzle](func).length <= 0){
       this.cleanupPuzzle();
     } else {
       console.log('failure');
@@ -118,9 +86,5 @@ export default class Game{
   nextPage(){
     this.gameState.currentPage++;
     this.generateText(20);
-  }
-
-  test(){
-
   }
 }
