@@ -42,20 +42,14 @@ export default class Game{
     switch(this.gameState.currentPage){
       case 1: //
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line:0}, {line:2, ch: 1000}, {readOnly: true})
         break;
       case 3: //second puzzle
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 2, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 4, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         break;
       case 6: //isDead puzzle
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 8, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
       case 7: //recursion puzzle
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 15, ch: 1000}, {readOnly: true})
         this.setupPuzzle();
         break;
       case 9: //

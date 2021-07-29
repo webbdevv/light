@@ -16,5 +16,9 @@ export default [
   {
     id: 3,
     header: `Enti-cide?`,
+  },
+  {
+    id: 4,
+    header: 'Soles for Souls'
   }
 ]

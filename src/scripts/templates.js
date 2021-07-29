@@ -32,18 +32,16 @@ export function createAnswers(gameState){
 }
 
 const gameStr0 = function(gameState, answer = ''){
-  return `
-function twoPlusTwo(two){
-  //fill in below
-  return two + two === ${answer};
-  //
+  return `function twoPlusTwo(two){
+  // fill in below //
+  return two + two ===${answer};
+  // DON'T ERASE THE //
 }`
 }
 
 const gameStr1 = function(gameState, answer = ''){
-  return `
-function answerToLife(){
-  //fill in below
+  return `function answerToLife(){
+  // fill in below //
   ${answer}
   //
 }`
@@ -56,7 +54,7 @@ return `class Entity{
   }
 
   isDead(){
-    //fill in below
+    // fill in below //
     ${answer}
     //
   }
@@ -64,8 +62,7 @@ return `class Entity{
 }
 
 const entityStr3 = function(gameState, answer = ''){
-return `
-class Entity{
+return `class Entity{
   constructor(life = 100){
     this.life = life;
   }
@@ -78,9 +75,25 @@ class Entity{
 }
 
 function destroyAll(entities){
-  //fill in below
+  // fill in below
   ${answer}
   //
 }`
 }
 
+const entityStr4 = function(gameState, answer = ''){
+  return `class Entity{
+  constructor(life = 100, position = [10, 10]){
+    this.life = life;
+    this.position = position
+  }
+  isDead(){
+    ${gameState.puzzles[2].userSolution}
+  }
+  destroy(){
+    this.life = 0;
+  }
+
+}
+`
+}
