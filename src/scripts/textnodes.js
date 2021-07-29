@@ -1,7 +1,7 @@
 let textnodes = [
   {
     id: 0,
-    text: 'Hello Light, I welcome you to your new home. Enjoy your stay.'
+    text: 'Hello Light, welcome home.'
   },
   {
     id: 1,
@@ -33,7 +33,11 @@ let textnodes = [
   },
   {
     id: 8,
-    text: `Ah, refreshing. `
+    text: `Ah refreshing, entropy reigns again.`
+  },
+  {
+    id: 9,
+    text: `So now that we've gotten that stuff done with, lets get you your land legs.`
   }
 ]
 export default textnodes;

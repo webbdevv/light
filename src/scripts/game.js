@@ -2,32 +2,14 @@ import { extractFunction } from "./util";
 import { testarr } from './test';
 import textnodes from './textnodes'
 import { createTemplates, createAnswers } from './templates'
+import puzzles from './puzzles'
 
 export default class Game{
   constructor(){
     this.codeMirror = document.querySelector('.CodeMirror').CodeMirror
     this.gameState = {
       textNodes: textnodes,
-      puzzles: [
-        {
-          id: 0,
-          header: '"Freedom is the freedom to say that two plus two make four"',
-          hint: '1984 by George Orwell'
-        },
-        {
-          id: 1,
-          header: 'Life, The Universe, and Everything',
-          hint: `The Hitchhiker's Guide to the Galaxy`,
-        },
-        {
-          id: 2,
-          header: `Death`,
-        },
-        {
-          id: 3,
-          header: `Enti-cide?`,
-        }
-      ],
+      puzzles: puzzles,
       currentPage: 0,
       currentPuzzle: 0,
     }
@@ -67,17 +49,17 @@ export default class Game{
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 2, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 4, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         break;
-      case 6:
+      case 6: //isDead puzzle
         this.setupPuzzle();
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 9, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.markText({line: 8, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
       case 7: //recursion puzzle
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 15, ch: 1000}, {readOnly: true})
         this.setupPuzzle();
         break;
-      // case 6: //
-
+      case 9: //
+        break;
     }
   }
 
@@ -112,6 +94,8 @@ export default class Game{
     reset.removeEventListener('click', this.resetCode)
     reset.innerHTML = '';
 
+    //errors cleanup
+    document.getElementById('error-msg').innerHTML = ''
     //submit
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
     this.gameState.currentPuzzle++;
@@ -128,11 +112,12 @@ export default class Game{
     code = extractFunction(code);
     let args = this.handleArguments();
     let func = window.currentFunction(code, args);
-    if(testarr[this.gameState.currentPuzzle](func).length <= 0){
+    let err = testarr[this.gameState.currentPuzzle](func);
+    if(!err){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       this.cleanupPuzzle();
     } else {
-      console.log('failure');
+      document.getElementById('error-msg').innerHTML = err
     }
   }
 

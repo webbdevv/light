@@ -83,4 +83,11 @@
     bottom: 10px;
     right: 100px;
   }
+  #error-msg{
+    position: absolute;
+    z-index: 101;
+    color: #d82121;
+    padding: 12px;
+    bottom: 100px;
+  }
 }
