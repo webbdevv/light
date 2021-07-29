@@ -93,7 +93,7 @@ export default class Game{
     //Setup reset
     let reset = document.getElementById('reset-code')
     reset.innerHTML = 'Reset';
-    reset.addEventListener('click', resetCode);
+    reset.addEventListener('click', this.resetCode);
     
     //setup submission
     let codeBtn = document.getElementById('submit-code')
@@ -102,15 +102,24 @@ export default class Game{
   }
 
   resetCode(){
-
+    let template = createAnswers(this.gameState);
+    this.codeMirror.setValue(template);
   }
 
   cleanupPuzzle(){
+    //reset cleanup
+    let reset = document.getElementById('reset-code');
+    reset.removeEventListener('click', this.resetCode)
+    reset.innerHTML = '';
+
+    //submit
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
     this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');
     document.getElementById('submit-code').innerHTML = '';
+
+    //move to next page
     this.nextPage();
   }
 
