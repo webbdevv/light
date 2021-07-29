@@ -296,14 +296,15 @@ a {
   border-radius: 8px;
 }
 .text-box #function-header {
-  padding: 16px 0;
-  height: 10%;
+  padding: 16px 12px;
+  height: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   color: #fff;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   position: relative;
 }
 .text-box #function-header:before {
@@ -320,7 +321,7 @@ a {
 .text-box .body {
   font-family: "Source Code Pro", monospace;
   position: relative;
-  height: 90%;
+  height: 95%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;

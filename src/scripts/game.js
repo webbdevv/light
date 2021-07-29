@@ -10,19 +10,21 @@ export default class Game{
       textNodes: textnodes,
       puzzles: [
         {
+          id: 0,
+          header: '"Freedom is the freedom to say that two plus two make four"',
+          hint: '1984 by George Orwell'
+        },
+        {
           id: 1,
-          template: '',
           header: 'Life, The Universe, and Everything',
           hint: `The Hitchhiker's Guide to the Galaxy`,
         },
         {
           id: 2,
-          template: '',
           header: `Death`,
         },
         {
           id: 3,
-          template: '',
           header: `Enti-cide?`,
         }
       ],
@@ -34,6 +36,8 @@ export default class Game{
     this.submitCode = this.submitCode.bind(this);
     this.cleanupPuzzle = this.cleanupPuzzle.bind(this);
     this.setupPuzzle = this.setupPuzzle.bind(this);
+    this.handleArguments = this.handleArguments.bind(this);
+    this.resetCode = this.resetCode.bind(this);
   }
 
   generateText(interval, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
@@ -54,31 +58,51 @@ export default class Game{
 
   generatePuzzle(){
     switch(this.gameState.currentPage){
-      case 1: //first puzzle
+      case 1: //
+        this.setupPuzzle();
+        this.codeMirror.doc.markText({line:0}, {line:2, ch: 1000}, {readOnly: true})
+        break;
+      case 3: //second puzzle
         this.setupPuzzle();
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 2, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 4, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         break;
-      case 4:
+      case 6:
         this.setupPuzzle();
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 7, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 9, ch:0}, {line: 10, ch: 1000}, {readOnly: true})
         break;
-      case 5:
+      case 7: //recursion puzzle
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 15, ch: 1000}, {readOnly: true})
         this.setupPuzzle();
+        break;
+      // case 6: //
+
     }
   }
 
   setupPuzzle(){
     const puzzle = this.gameState.puzzles[this.gameState.currentPuzzle]
     document.getElementById('next-btn').style.display = 'none';
-    puzzle.template = createAnswers(this.gameState)
+    puzzle.template = createAnswers(this.gameState);
+    
+    //setup code block
     this.codeMirror.setValue(puzzle.template);
     document.getElementById('function-header').innerHTML = puzzle.header;
+
+    //Setup reset
+    let reset = document.getElementById('reset-code')
+    reset.innerHTML = 'Reset';
+    reset.addEventListener('click', resetCode);
+    
+    //setup submission
     let codeBtn = document.getElementById('submit-code')
     codeBtn.innerHTML = 'Submit';
     codeBtn.addEventListener('click', this.submitCode)
+  }
+
+  resetCode(){
+
   }
 
   cleanupPuzzle(){
@@ -93,7 +117,8 @@ export default class Game{
   submitCode(){ 
     let code = document.querySelector('.CodeMirror').CodeMirror.doc.getValue()
     code = extractFunction(code);
-    let func = window.currentFunction(code);
+    let args = this.handleArguments();
+    let func = window.currentFunction(code, args);
     if(testarr[this.gameState.currentPuzzle](func).length <= 0){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       this.cleanupPuzzle();
@@ -102,6 +127,14 @@ export default class Game{
     }
   }
 
+  handleArguments(){
+    switch(this.gameState.currentPuzzle){
+      case 0:
+        return 'two';
+      default:
+        return undefined;
+    }
+  }
   play(){
     //First begin by darkening screen and writing first function
     this.generateText(20);

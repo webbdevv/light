@@ -20,20 +20,21 @@
   justify-content: center;
   color: $high-emphasis;
   #function-header{
-    padding: 16px 0;
-    height: 10%;
+    padding: 16px 12px;
+    height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     color: #fff;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1rem;
     @include overlay-top(.1, 8px, 8px, $primary-purple)
   }
   .body{
     font-family: 'Source Code Pro', monospace; //for coding look
     @include overlay-bottom(.18, 8px, 8px);
-    height: 90%;
+    height: 95%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;

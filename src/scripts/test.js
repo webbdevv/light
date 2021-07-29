@@ -2,6 +2,20 @@ import chai, { expect, should, assert } from 'chai'
 import Entity from './entity'
 import sinon from '../../node_modules/sinon/pkg/sinon-esm'
 
+function test0(func, args){
+  let spy = sinon.spy(func);
+  let errors = [];
+  try{
+    expect(spy).to.not.throw(Error)
+    let a = spy(2.5);
+    expect(a).to.equal(true)
+  } catch(err){
+    errors.push(err)
+    console.log(err)
+  }
+  return errors
+}
+
 function test1(func){
   let spy = sinon.spy(func);
   let errors = [];
@@ -54,4 +68,4 @@ function test3(func){
   return errors;
 }
 
-export const testarr = [test1, test2, test3]
+export const testarr = [test0, test1, test2, test3]
