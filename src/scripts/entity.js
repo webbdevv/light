@@ -18,8 +18,10 @@ class Entity{
   }
   move(direction){
     if(!this.DIRECTIONS[direction]) throw Error("Invalid Direction");
+    let move = this.DIRECTIONS[direction];
     //Fill in here
-
+      this.position[0] += move[0];
+      this.position[1] += move[1];
     //
   }
 }

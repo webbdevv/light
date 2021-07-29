@@ -85,7 +85,13 @@ const entityStr4 = function(gameState, answer = ''){
   return `class Entity{
   constructor(life = 100, position = [10, 10]){
     this.life = life;
-    this.position = position
+    this.position = position;
+    this.DIRECTIONS = { 
+      left: [-1, 0],
+      right: [1, 0],
+      up: [0, 1],
+      down: [0, -1]
+    }
   }
   isDead(){
     ${gameState.puzzles[2].userSolution}
@@ -93,7 +99,13 @@ const entityStr4 = function(gameState, answer = ''){
   destroy(){
     this.life = 0;
   }
-
+  move(direction){
+    if(!this.DIRECTIONS[direction]) throw Error("Invalid Direction");
+    let move = this.DIRECTIONS[direction];
+    //Fill in here
+    
+    //
+  }
 }
 `
 }

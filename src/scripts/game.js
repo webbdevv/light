@@ -4,7 +4,7 @@ import textnodes from './textnodes'
 import { createTemplates, createAnswers } from './templates'
 import puzzles from './puzzles'
 
-export default class Game{
+export default class Game {
   constructor(){
     this.codeMirror = document.querySelector('.CodeMirror').CodeMirror
     this.gameState = {
