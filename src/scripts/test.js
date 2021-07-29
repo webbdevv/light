@@ -58,7 +58,7 @@ function test3(func){
   window.destroyAll = spy;
   try{
     spy(entities);
-    expect(window.entities).to.have.lengthOf(0, "Entities should be cleared from their containing array when they are destroyed. Wouldn't want to hold onto dead bodies would we?");
+    expect(window.entities).to.have.lengthOf(0, "Entities should be cleared from their containing array when they are destroyed. Wouldn't want to hold onto the dead bodies would we?");
     expect(spy.callCount).to.be.above(3, "Recursion please");
     expect(spy.callCount).to.be.below(5, "Recursion please");
   } catch(err){

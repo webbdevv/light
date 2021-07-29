@@ -35,7 +35,7 @@ const gameStr0 = function(gameState, answer = ''){
   return `function twoPlusTwo(two){
   // fill in below //
   return two + two ===${answer};
-  // DON'T ERASE THE //
+  //
 }`
 }
 
