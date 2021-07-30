@@ -11,8 +11,8 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 9,
-      currentPuzzle: 4,
+      currentPage: 0, //9
+      currentPuzzle: 0, //4
     }
     this.board = undefined;
     this.nextPage = this.nextPage.bind(this);
