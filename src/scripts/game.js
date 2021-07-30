@@ -1,6 +1,7 @@
 import { extractFunction } from "./util";
 import { testarr } from './test';
 import textnodes from './textnodes'
+import Board from './board'
 import { createTemplates, createAnswers } from './templates'
 import puzzles from './puzzles'
 
@@ -10,9 +11,10 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 0,
-      currentPuzzle: 0,
+      currentPage: 9,
+      currentPuzzle: 4,
     }
+    this.board = undefined;
     this.nextPage = this.nextPage.bind(this);
     this.generatePuzzle = this.generatePuzzle.bind(this);
     this.submitCode = this.submitCode.bind(this);
@@ -61,6 +63,7 @@ export default class Game {
         this.codeMirror.doc.markText({line: 18, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
         break;
       case 9: //
+        this.setupPuzzle();
         break;
     }
   }
@@ -117,6 +120,15 @@ export default class Game {
     let err = testarr[this.gameState.currentPuzzle](func);
     if(!err){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
+      switch(this.gameState.currentPuzzle){
+        case 4:
+          this.board = new Board(20);
+          document.querySelector('#game > canvas').remove()
+          document.querySelector('#board').classList.add('active')
+          break;
+        default:
+          break;
+      }
       this.cleanupPuzzle();
     } else {
       document.getElementById('error-msg').innerHTML = err
@@ -133,7 +145,7 @@ export default class Game {
   }
   play(){
     //First begin by darkening screen and writing first function
-    this.generateText(20);
+    this.generateText(2);
     document.getElementById('next-btn').innerHTML = 'Next';
     document.getElementById('next-btn').addEventListener('click', this.nextPage)
     document.getElementById('play').removeEventListener('click', this.play)
@@ -141,6 +153,6 @@ export default class Game {
 
   nextPage(){
     this.gameState.currentPage++;
-    this.generateText(20);
+    this.generateText(2);
   }
 }

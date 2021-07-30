@@ -2,6 +2,22 @@ import chai, { expect, should, assert } from 'chai'
 import Entity from './entity'
 import sinon from '../../node_modules/sinon/pkg/sinon-esm'
 
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+
+  // If you don't care about the order of the elements inside
+  // the array, you should sort both arrays here.
+  // Please note that calling sort on an array will modify that array.
+  // you might want to clone your array first.
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
 function test0(func, args){
   let spy = sinon.spy(func);
   let error;
@@ -68,4 +84,26 @@ function test3(func){
   return error;
 }
 
-export const testarr = [test0, test1, test2, test3]
+function test4(func){
+  let spy = sinon.spy(func);
+  let error;
+  let entity = new Entity();
+  spy = spy.bind(entity)
+  try{
+    expect(spy).to.not.throw(Error, "Syntax error");
+    expect(arraysEqual(entity.position, [10, 10])).to.equal(true, 'Without calling move the entity should not move');
+    entity.move('up')
+    expect(arraysEqual(entity.position, [11, 10])).to.equal(true, 'Moving up should move up');
+    entity.move('left')
+    expect(arraysEqual(entity.position, [11, 9])).to.equal(true, 'Moving left should do accordingly')
+    entity.move('right')
+    expect(arraysEqual(entity.position, [11, 10])).to.equal(true, 'Moving right should do accordingly')
+    entity.move('down')
+    expect(arraysEqual(entity.position, [10, 10])).to.equal(true, 'Moving down should do accordingly')
+  } catch (err){
+    error = err.message.split(':')[0]
+    console.log(err);
+  }
+  return error
+}
+export const testarr = [test0, test1, test2, test3, test4]

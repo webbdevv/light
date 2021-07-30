@@ -257,7 +257,7 @@ a {
 }
 
 .info-container {
-  width: 30%;
+  width: 45%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -390,12 +390,15 @@ a {
 }
 
 .cube {
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  z-index: 102;
 }
 
 .game-container {
-  width: calc(70% - 5rem);
+  width: calc(55% - 5rem);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -404,8 +407,8 @@ a {
 }
 .game-container #game {
   position: relative;
-  width: 700px;
-  height: 700px;
+  width: 701px;
+  height: 701px;
   border-radius: 20px;
 }
 .game-container #game:before {
@@ -420,7 +423,12 @@ a {
 }
 .game-container #board {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+}
+.game-container #board.active {
+  border-top: 1px solid white;
+  border-left: 1px solid white;
 }
 .game-container .game-message {
   display: flex;
@@ -449,7 +457,7 @@ a {
   padding: 12px 0;
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
-  width: 700px;
+  width: 701px;
   font-family: "Source Code Pro", monospace;
   font-size: 1.125rem;
   line-height: 1.3rem;

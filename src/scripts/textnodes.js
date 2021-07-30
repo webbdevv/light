@@ -39,6 +39,10 @@ let textnodes = [
   {
     id: 9,
     text: `So now that we've gotten that stuff done with, lets get you your land legs.`
+  },
+  {
+    id: 10,
+    text: `Ah that's nice. Try moving around with the arrow keys now.`
   }
 ]
 export default textnodes;

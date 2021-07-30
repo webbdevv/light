@@ -1,9 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Board from './board'
-export default class Plane extends Board {
+export default class Plane {
   constructor(size = 10){
-    super(size);
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, 1, .1, 1000);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
