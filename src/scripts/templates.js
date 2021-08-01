@@ -99,14 +99,12 @@ const entityStr5 = function(gameState, answer = ''){
 
 const gameStr6 = function(gameState, answer = ''){
   return `class Entity{
-    ...
-    ...
-    ...
-
+    // previously written code
     moveTo(position){
       ${gameState.puzzles[5].userSolution}
     }
   }
+  
   function babysFirstSteps(baby = 'you'){
 
   }
@@ -146,4 +144,5 @@ export function createAnswers(gameState){
       }`,
   ];
   return templates[gameState.currentPuzzle](gameState)
+  //add second argument of answers[gameState.currentPuzzle] for auto complete answers
 }

@@ -352,6 +352,7 @@ a {
   border-bottom-right-radius: 8px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
+  line-height: 1.2rem;
   font-family: "Source Code Pro", monospace;
   background-color: inherit;
 }

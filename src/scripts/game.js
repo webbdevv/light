@@ -124,7 +124,6 @@ export default class Game {
   }
 
   submitCode(){ 
-    debugger
     let marks = this.codeMirror.doc.getAllMarks();
     let code = this.codeMirror.doc.getRange(marks[0].find(), marks[1].find()).trim();
     let args = this.handleArguments();
