@@ -46,7 +46,11 @@ let textnodes = [
   },
   {
     id: 11,
-    text: `But moving around one step at a time is inconvenient. Find a way to do it better.`
+    text: `But moving around one step at a time is inconvenient. Make a way to do it better.`
+  },
+  {
+    id: 12,
+    text: `That will make things much easier in the future. Let's practice moving around the board now. Visit the red block at [5, 5]`
   }
 ]
 export default textnodes;

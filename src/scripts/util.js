@@ -1,3 +1,4 @@
+//unecessary
 export const extractFunction = function(data){
   data = data.toString();
   let left = data.indexOf('//')

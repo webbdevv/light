@@ -79,7 +79,7 @@ function test3(func){
     expect(spy.callCount).to.be.below(5, "Recursion please");
   } catch(err){
     error = err.message.split(":")[0]
-    console.log(err)
+    console.log(error)
   }
   return error;
 }
@@ -92,17 +92,17 @@ function test4(func){
   try{
     expect(spy).to.not.throw(Error, "Syntax error");
     expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Without calling move the entity should not move');
-    entity.move('down')
+      spy('down')
     expect(arraysEqual(entity.position, [1, 0])).to.equal(true, 'Moving up should move up');
-    entity.move('right')
+      spy('right')
     expect(arraysEqual(entity.position, [1, 1])).to.equal(true, 'Moving left should do accordingly')
-    entity.move('left')
+      spy('left')
     expect(arraysEqual(entity.position, [1, 0])).to.equal(true, 'Moving right should do accordingly')
-    entity.move('up')
+      spy('up')
     expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Moving down should do accordingly')
   } catch (err){
     error = err.message.split(':')[0]
-    console.log(err);
+    console.log(error);
   }
   return error
 }
@@ -117,9 +117,23 @@ function test5(func){
     entity.moveTo([7, 7]);
     expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
-    err = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
-    console.log(err);
+    error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
+    console.log(error);
   }
   return error;
 }
+
+function test6(func, light){
+  let error;
+  try {
+    expect(arraysEqual(light.position, [0,0])).to.equal(true, 'Light, you have to start at 0, 0');
+    expect(func(light)).to.not.throw(Error, "Light tried to move but fell on his face. Ouch");
+    expect(arraysEqual(light.position, [5, 5])).to.equal(true, "Light didn't move the the right place");
+  } catch(err){
+    error = err.message.split(':')[0]
+    console.log(err);
+  }
+  return error
+} 
+
 export const testarr = [test0, test1, test2, test3, test4, test5]

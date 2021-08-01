@@ -23,6 +23,10 @@ export default [
   },
   {
     id: 5,
+    header: "The Speed of Light"
+  },
+  {
+    id: 6,
     header: "Light's First Steps!!!"
   }
 ]

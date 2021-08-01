@@ -1,27 +1,12 @@
-export function createTemplates(gameState){
-  switch(gameState.currentPuzzle){
-    case 0:
-      return entityStr0(gameState);
-    case 1: //second puzzle has needs the entity class
-      return entityStr1(gameState);
-    case 2:
-      return entityStr2(gameState);
-  }
-}
-
 const gameStr0 = function(gameState, answer = ''){
   return `function twoPlusTwo(two){
-  // fill in below //
   return two + two ===${answer};
-  //
 }`
 }
 
 const gameStr1 = function(gameState, answer = ''){
   return `function answerToLife(){
-  // fill in below //
   ${answer}
-  //
 }`
 }
 
@@ -32,9 +17,7 @@ return `class Entity{
   }
 
   isDead(){
-    // fill in below //
     ${answer}
-    //
   }
 }`
 }
@@ -53,9 +36,7 @@ return `class Entity{
 }
 
 function destroyAll(entities){
-  // fill in below
   ${answer}
-  //
 }`
 }
 
@@ -80,9 +61,8 @@ const entityStr4 = function(gameState, answer = ''){
     move(direction){
       if(!this.DIRECTIONS[direction]) throw Error("Invalid Direction");
       let move = this.DIRECTIONS[direction];
-      //Fill in here
+      // Fill in below //
         ${answer}
-      //
     }
   }
   `
@@ -112,13 +92,27 @@ const entityStr5 = function(gameState, answer = ''){
       ${gameState.puzzles[4].userSolution}
     }
     moveTo(position){
-      //fill in below
       ${answer}
-      //
     }
   }`
 }
-const templates = [gameStr0, gameStr1, entityStr2, entityStr3, entityStr4, entityStr5]
+
+const gameStr6 = function(gameState, answer = ''){
+  return `class Entity{
+    ...
+    ...
+    ...
+
+    moveTo(position){
+      ${gameState.puzzles[5].userSolution}
+    }
+  }
+  function babysFirstSteps(baby = 'you'){
+
+  }
+  `
+}
+const templates = [gameStr0, gameStr1, entityStr2, entityStr3, entityStr4, entityStr5, gameStr6]
 
 export function createAnswers(gameState){
   const answers = [
@@ -151,5 +145,5 @@ export function createAnswers(gameState){
         }
       }`,
   ];
-  return templates[gameState.currentPuzzle](gameState, answers[gameState.currentPuzzle])
+  return templates[gameState.currentPuzzle](gameState)
 }

@@ -12,8 +12,8 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 9, //9
-      currentPuzzle: 4, //4
+      currentPage: 11, //9
+      currentPuzzle: 5, //4
     }
     this.light = new Entity()
     this.board = undefined;
@@ -44,32 +44,37 @@ export default class Game {
 
   generatePuzzle(){
     switch(this.gameState.currentPage){
-      case 1: //
+      case 1: //puzzle 1
       this.setupPuzzle();
-      this.codeMirror.doc.markText({line: 0, ch:0}, {line: 1, ch: 1000}, {readOnly: true})
-      this.codeMirror.doc.markText({line: 3, ch:0}, {line: 4, ch: 1000}, {readOnly: true})
+      this.codeMirror.doc.setBookmark({line: 1, ch: 0})
+      this.codeMirror.doc.setBookmark({line: 2, ch: 0});
         break;
       case 3: //second puzzle
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 1, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 3, ch:0}, {line: 5, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.setBookmark({line: 1, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 2, ch: 0});
         break;
       case 6: //isDead puzzle
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 6, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 8, ch:0}, {line: 11, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.setBookmark({line: 6, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 7, ch: 0});
         break;
       case 7: //recursion puzzle
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 13, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 18, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.setBookmark({line: 13, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 14, ch: 0});
         break;
       case 9: //making move function
         this.setupPuzzle();
-        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
-        this.codeMirror.doc.markText({line: 23, ch:0}, {line: 26, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.setBookmark({line: 18, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 22, ch: 0});
         break;
       case 11: //moving to a new location
+        this.setupPuzzle();
+        this.codeMirror.doc.setBookmark({line: 23, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 24, ch: 0});
+        break;
+      case 12: //move to a code block for the first time currentPuzzle=6
         this.setupPuzzle();
     }
   }
@@ -119,8 +124,9 @@ export default class Game {
   }
 
   submitCode(){ 
-    let code = document.querySelector('.CodeMirror').CodeMirror.doc.getValue()
-    code = extractFunction(code);
+    debugger
+    let marks = this.codeMirror.doc.getAllMarks();
+    let code = this.codeMirror.doc.getRange(marks[0].find(), marks[1].find()).trim();
     let args = this.handleArguments();
     let func = window.currentFunction(code, args);
     let err = testarr[this.gameState.currentPuzzle](func);
@@ -142,6 +148,10 @@ export default class Game {
     }
   }
 
+  grabCode(){
+
+  }
+
   moveLight(){
 
   }
@@ -150,6 +160,12 @@ export default class Game {
     switch(this.gameState.currentPuzzle){
       case 0:
         return 'two';
+      case 4:
+        return 'direction';
+      case 5:
+        return 'position';
+      case 6: 
+        return 'daBaby';
       default:
         return undefined;
     }
@@ -167,3 +183,14 @@ export default class Game {
     this.generateText(2);
   }
 }
+
+//workflow
+
+//textnodes
+//code inside the class itself
+//update puzzle title and id
+//template
+//handle arguments if needed
+//Code solution
+//code test
+//handle cleanup
