@@ -382,13 +382,6 @@ a {
   bottom: 10px;
   right: 100px;
 }
-.text-box #error-msg {
-  position: absolute;
-  z-index: 101;
-  color: #d82121;
-  padding: 12px;
-  bottom: 100px;
-}
 
 .cube {
   width: 35px;
@@ -469,6 +462,9 @@ a {
 .game-container #game-textbox #text-sender {
   display: inline-block;
   padding-bottom: 8px;
+}
+.game-container #text-body.error {
+  color: #f44336;
 }
 
 #next-btn {

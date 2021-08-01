@@ -105,13 +105,8 @@ export default class Game {
   }
 
   cleanupPuzzle(){
-    //reset cleanup
-    let reset = document.getElementById('reset-code');
-    reset.removeEventListener('click', this.resetCode)
-    reset.innerHTML = '';
-
     //errors cleanup
-    document.getElementById('error-msg').innerHTML = ''
+    document.getElementById('text-body').classList.remove('error')
     //submit
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
     this.gameState.currentPuzzle++;
@@ -143,7 +138,8 @@ export default class Game {
       }
       this.cleanupPuzzle();
     } else {
-      document.getElementById('error-msg').innerHTML = err
+      document.getElementById('text-body').classList.toggle('error')
+      this.generateText(15, err)
     }
   }
 
