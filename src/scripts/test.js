@@ -109,5 +109,17 @@ function test4(func){
 
 function test5(func){
   let entity = new Entity()
+  let error;
+  func = func.bind(entity);
+  try {
+    expect(func).to.not.throw(Error, "Something went wrong with your function")
+    expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Without calling move the entity should not move');
+    entity.moveTo([7, 7]);
+    expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
+  } catch(err){
+    err = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
+    console.log(err);
+  }
+  return error;
 }
-export const testarr = [test0, test1, test2, test3, test4]
+export const testarr = [test0, test1, test2, test3, test4, test5]

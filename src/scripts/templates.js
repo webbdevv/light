@@ -113,7 +113,7 @@ const entityStr5 = function(gameState, answer = ''){
     }
     moveTo(position){
       //fill in below
-      
+      ${answer}
       //
     }
   }`
@@ -128,9 +128,28 @@ export function createAnswers(gameState){
     `if(entities.length > 0){
         entities.pop().destroy()
         destroyAll(entities)
-      }`,
+    }`,
     `this.position[0] += move[0];
-    this.position[1] += move[1];`
+    this.position[1] += move[1];`,
+    `let movementVector = [this.position[0] - position[0], this.position[1] - position[1]];
+      while(movementVector[0] !== 0){
+        if(movementVector[0] < 0){
+          this.move('down');
+          movementVector[0]++
+        } else {
+          this.move('up')
+          movementVector[0]--
+        }
+      }
+      while(movementVector[1] !== 0){
+        if(movementVector[1] < 0){
+          this.move('right');
+          movementVector[1]++ 
+        } else {
+          this.move('left');
+          movementVector[1]--
+        }
+      }`,
   ];
   return templates[gameState.currentPuzzle](gameState, answers[gameState.currentPuzzle])
 }

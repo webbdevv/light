@@ -69,8 +69,8 @@ export default class Game {
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 23, ch:0}, {line: 26, ch: 1000}, {readOnly: true})
         break;
-      case 10: //moving to a new location
-
+      case 11: //moving to a new location
+        this.setupPuzzle();
     }
   }
 
