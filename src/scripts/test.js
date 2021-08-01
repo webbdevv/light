@@ -91,19 +91,23 @@ function test4(func){
   spy = spy.bind(entity)
   try{
     expect(spy).to.not.throw(Error, "Syntax error");
-    expect(arraysEqual(entity.position, [10, 10])).to.equal(true, 'Without calling move the entity should not move');
-    entity.move('up')
-    expect(arraysEqual(entity.position, [11, 10])).to.equal(true, 'Moving up should move up');
-    entity.move('left')
-    expect(arraysEqual(entity.position, [11, 9])).to.equal(true, 'Moving left should do accordingly')
-    entity.move('right')
-    expect(arraysEqual(entity.position, [11, 10])).to.equal(true, 'Moving right should do accordingly')
+    expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Without calling move the entity should not move');
     entity.move('down')
-    expect(arraysEqual(entity.position, [10, 10])).to.equal(true, 'Moving down should do accordingly')
+    expect(arraysEqual(entity.position, [1, 0])).to.equal(true, 'Moving up should move up');
+    entity.move('right')
+    expect(arraysEqual(entity.position, [1, 1])).to.equal(true, 'Moving left should do accordingly')
+    entity.move('left')
+    expect(arraysEqual(entity.position, [1, 0])).to.equal(true, 'Moving right should do accordingly')
+    entity.move('up')
+    expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Moving down should do accordingly')
   } catch (err){
     error = err.message.split(':')[0]
     console.log(err);
   }
   return error
+}
+
+function test5(func){
+  let entity = new Entity()
 }
 export const testarr = [test0, test1, test2, test3, test4]

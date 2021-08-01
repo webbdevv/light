@@ -1,3 +1,4 @@
+import Entity from "./entity";
 import { extractFunction } from "./util";
 import { testarr } from './test';
 import textnodes from './textnodes'
@@ -11,9 +12,10 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 0, //9
-      currentPuzzle: 0, //4
+      currentPage: 9, //9
+      currentPuzzle: 4, //4
     }
+    this.light = new Entity()
     this.board = undefined;
     this.nextPage = this.nextPage.bind(this);
     this.generatePuzzle = this.generatePuzzle.bind(this);
@@ -62,9 +64,13 @@ export default class Game {
         this.codeMirror.doc.markText({line: 0, ch:0}, {line: 13, ch: 1000}, {readOnly: true})
         this.codeMirror.doc.markText({line: 18, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
         break;
-      case 9: //
+      case 9: //making move function
         this.setupPuzzle();
+        this.codeMirror.doc.markText({line: 0, ch:0}, {line: 20, ch: 1000}, {readOnly: true})
+        this.codeMirror.doc.markText({line: 23, ch:0}, {line: 26, ch: 1000}, {readOnly: true})
         break;
+      case 10: //moving to a new location
+
     }
   }
 
@@ -125,6 +131,7 @@ export default class Game {
           this.board = new Board(20);
           document.querySelector('#game > canvas').remove()
           document.querySelector('#board').classList.add('active')
+          this.board.htmlGrid[this.light.position[0]][this.light.position[1]].style.backgroundColor = 'white'
           break;
         default:
           break;
@@ -133,6 +140,10 @@ export default class Game {
     } else {
       document.getElementById('error-msg').innerHTML = err
     }
+  }
+
+  moveLight(){
+
   }
 
   handleArguments(){

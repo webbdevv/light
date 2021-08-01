@@ -19,7 +19,7 @@ export default class Board{
         cube.classList.add('cube')
         this.grid[i].push(tile);
         board.appendChild(cube);
-        this.htmlGrid.push(cube)
+        this.htmlGrid[i].push(cube)
       }
     }
   }

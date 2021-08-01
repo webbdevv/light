@@ -42,7 +42,11 @@ let textnodes = [
   },
   {
     id: 10,
-    text: `Ah that's nice. Try moving around with the arrow keys now.`
+    text: `Ah that's nice. Now you'll be able to move around in the future. Oh and if you can't tell, that's you in the top left.`
+  },
+  {
+    id: 11,
+    text: `But moving around one step at a time is inconvenient. Find a way to do it better.`
   }
 ]
 export default textnodes;
