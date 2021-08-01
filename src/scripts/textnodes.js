@@ -51,6 +51,11 @@ let textnodes = [
   {
     id: 12,
     text: `That will make things much easier in the future. Let's practice moving around the board now. Visit the red block at [5, 5]`
+  },
+  {
+    id: 13,
+    text: 'Wonderful, this is how you will progress as we go on. The red blocks are "code blocks" that you will be prompted to move towards and solve.'
   }
+
 ]
 export default textnodes;

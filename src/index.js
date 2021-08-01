@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('play').addEventListener('click', () => {
     const game = new Game();
     game.play();
+    window.game = game;
     document.getElementById('play').style.display = 'none'
   });
 })

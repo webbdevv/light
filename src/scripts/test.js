@@ -118,7 +118,7 @@ function test5(func){
     expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
     error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
-    console.log(error);
+    console.log(err);
   }
   return error;
 }
@@ -126,6 +126,7 @@ function test5(func){
 function test6(func, light){
   let error;
   try {
+    debugger
     expect(arraysEqual(light.position, [0,0])).to.equal(true, 'Light, you have to start at 0, 0');
     expect(func(light)).to.not.throw(Error, "Light tried to move but fell on his face. Ouch");
     expect(arraysEqual(light.position, [5, 5])).to.equal(true, "Light didn't move the the right place");

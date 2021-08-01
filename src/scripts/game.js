@@ -12,8 +12,8 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 11, //9
-      currentPuzzle: 5, //4
+      currentPage: 11, //12
+      currentPuzzle: 5, //6
     }
     this.light = new Entity()
     this.board = undefined;
@@ -26,12 +26,14 @@ export default class Game {
     this.resetCode = this.resetCode.bind(this);
   }
 
-  generateText(interval, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
+  generateText(interval, err = false, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
     if(idx === 0) {
       document.getElementById('text-sender').innerHTML = '???'
       document.getElementById('next-btn').style.display = 'inline-block';
       target.innerHTML = '';
-      this.generatePuzzle()
+      if(!err){
+        this.generatePuzzle()
+      }
     }
     if(idx < text.length){
       target.innerHTML += text[idx++];
@@ -76,6 +78,9 @@ export default class Game {
         break;
       case 12: //move to a code block for the first time currentPuzzle=6
         this.setupPuzzle();
+        this.codeMirror.doc.setBookmark({line: 8, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 9, ch: 0})
+        break;
     }
   }
 
@@ -123,23 +128,24 @@ export default class Game {
     let code = this.codeMirror.doc.getRange(marks[0].find(), marks[1].find()).trim();
     let args = this.handleArguments();
     let func = window.currentFunction(code, args);
-    let err = testarr[this.gameState.currentPuzzle](func);
+    let err = testarr[this.gameState.currentPuzzle](func);  //test current function
     if(!err){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       switch(this.gameState.currentPuzzle){
-        case 4:
+        case 5:
           this.board = new Board(20);
           document.querySelector('#game > canvas').remove()
           document.querySelector('#board').classList.add('active')
           this.board.htmlGrid[this.light.position[0]][this.light.position[1]].style.backgroundColor = 'white'
+          this.board.htmlGrid[5][5].style.backgroundColor = '#d32f2f';
           break;
         default:
           break;
       }
       this.cleanupPuzzle();
     } else {
-      document.getElementById('text-body').classList.toggle('error')
-      this.generateText(15, err)
+      document.getElementById('text-body').classList.add('error')
+      this.generateText(15, true, err)
     }
   }
 
@@ -151,7 +157,7 @@ export default class Game {
 
   }
 
-  handleArguments(){
+  handleArguments(func){
     switch(this.gameState.currentPuzzle){
       case 0:
         return 'two';
@@ -160,6 +166,7 @@ export default class Game {
       case 5:
         return 'position';
       case 6: 
+        func = func.bind(this.light)
         return 'daBaby';
       default:
         return undefined;

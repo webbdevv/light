@@ -101,10 +101,10 @@ const gameStr6 = function(gameState, answer = ''){
   return `class Entity{
     // previously written code
     moveTo(position){
-      ${gameState.puzzles[5].userSolution}
+      ...
     }
   }
-  
+
   function babysFirstSteps(baby = 'you'){
 
   }
