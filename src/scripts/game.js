@@ -5,6 +5,7 @@ import textnodes from './textnodes'
 import Board from './board'
 import { createTemplates, createAnswers } from './templates'
 import puzzles from './puzzles'
+import { tokensToRegExp } from "sinon/pkg/sinon";
 
 export default class Game {
   constructor(){
@@ -24,23 +25,24 @@ export default class Game {
     this.setupPuzzle = this.setupPuzzle.bind(this);
     this.handleArguments = this.handleArguments.bind(this);
     this.resetCode = this.resetCode.bind(this);
+    this.moveLight = this.moveLight.bind(this);
   }
 
   generateText(interval, err = false, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
     if(idx === 0) {
       document.getElementById('text-sender').innerHTML = '???'
-      document.getElementById('next-btn').style.display = 'inline-block';
       target.innerHTML = '';
       if(!err){
+        document.getElementById('next-btn').style.display = 'inline-block';
         this.generatePuzzle()
       }
     }
     if(idx < text.length){
       target.innerHTML += text[idx++];
-      setTimeout(() => { this.generateText(interval, text, idx)}, interval)
+      setTimeout(() => { this.generateText(interval, err, text, idx)}, interval)
     }
     if(idx === text.length - 1){
-      setTimeout(() => console.log('hello'), 1000);
+      setTimeout(() => {}, 1000);
     }
   }
 
@@ -73,14 +75,17 @@ export default class Game {
         break;
       case 11: //moving to a new location
         this.setupPuzzle();
-        this.codeMirror.doc.setBookmark({line: 23, ch: 0})
-        this.codeMirror.doc.setBookmark({line: 24, ch: 0});
+        this.codeMirror.doc.setBookmark({line: 21, ch: 0})
+        this.codeMirror.doc.setBookmark({line: 23, ch: 0});
         break;
       case 12: //move to a code block for the first time currentPuzzle=6
         this.setupPuzzle();
         this.codeMirror.doc.setBookmark({line: 8, ch: 0})
         this.codeMirror.doc.setBookmark({line: 9, ch: 0})
         break;
+      case 13: //making the walls for the first time
+        this.setupPuzzle();
+
     }
   }
 
@@ -128,7 +133,7 @@ export default class Game {
     let code = this.codeMirror.doc.getRange(marks[0].find(), marks[1].find()).trim();
     let args = this.handleArguments();
     let func = window.currentFunction(code, args);
-    let err = testarr[this.gameState.currentPuzzle](func);  //test current function
+    let err = testarr[this.gameState.currentPuzzle](func, this);  //test current function
     if(!err){
       this.gameState.puzzles[this.gameState.currentPuzzle].userSolution = code
       switch(this.gameState.currentPuzzle){
@@ -153,8 +158,13 @@ export default class Game {
 
   }
 
-  moveLight(){
-
+  moveLight(prev){
+    debugger
+    let [posY, posX] = prev
+    this.board.htmlGrid[posY][posX].style.backgroundColor = 'inherit'
+    let [curPosY, curPosX] = this.light.position;
+    this.board.htmlGrid[curPosY][curPosX].style.backgroundColor = 'white';
+    this.board.htmlGrid[curPosY][curPosX].style.borderColor = 'white';
   }
 
   handleArguments(func){
@@ -166,15 +176,14 @@ export default class Game {
       case 5:
         return 'position';
       case 6: 
-        func = func.bind(this.light)
-        return 'daBaby';
+        return 'baby';
       default:
         return undefined;
     }
   }
   play(){
     //First begin by darkening screen and writing first function
-    this.generateText(2);
+    this.generateText(2, false);
     document.getElementById('next-btn').innerHTML = 'Next';
     document.getElementById('next-btn').addEventListener('click', this.nextPage)
     document.getElementById('play').removeEventListener('click', this.play)

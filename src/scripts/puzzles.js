@@ -28,5 +28,9 @@ export default [
   {
     id: 6,
     header: "Light's First Steps!!!"
+  },
+  {
+    id: 7,
+    header: "Maria, Rose, and Sheena"
   }
 ]

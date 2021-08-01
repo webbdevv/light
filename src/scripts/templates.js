@@ -81,17 +81,16 @@ const entityStr5 = function(gameState, answer = ''){
       }
     }
     isDead(){
-      ${gameState.puzzles[2].userSolution}
+      ...
     }
     destroy(){
       this.life = 0;
     }
     move(direction){
-      if(!this.DIRECTIONS[direction]) throw Error("Invalid Direction");
-      let move = this.DIRECTIONS[direction];
-      ${gameState.puzzles[4].userSolution}
+      ...
     }
     moveTo(position){
+      //Fill in below
       ${answer}
     }
   }`

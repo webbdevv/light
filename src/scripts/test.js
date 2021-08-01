@@ -123,18 +123,27 @@ function test5(func){
   return error;
 }
 
-function test6(func, light){
+function test6(func, game){
   let error;
+  const light = game.light;
+  let prevPos = [0, 0]
+  let endPos = [5, 5]
   try {
-    debugger
-    expect(arraysEqual(light.position, [0,0])).to.equal(true, 'Light, you have to start at 0, 0');
-    expect(func(light)).to.not.throw(Error, "Light tried to move but fell on his face. Ouch");
-    expect(arraysEqual(light.position, [5, 5])).to.equal(true, "Light didn't move the the right place");
+    expect(arraysEqual(light.position, prevPos)).to.equal(true, 'Light, you have to start at 0, 0');
+    func(light);
+    expect(arraysEqual(light.position, endPos)).to.equal(true, "Light didn't move the the right place")
+    game.moveLight(prevPos);
+    return
   } catch(err){
+    light.position = [0, 0] //reset on failure
     error = err.message.split(':')[0]
     console.log(err);
+    return error
   }
-  return error
-} 
+}
+
+function test7(func, game){
+  
+}
 
 export const testarr = [test0, test1, test2, test3, test4, test5, test6]
