@@ -1,6 +1,5 @@
-export default 
-class Entity{
-  constructor(life = 100, position = [0, 0]){
+export default class Entity {
+  constructor(life = 100, position = [0, 0], board){
     this.life = life;
     this.position = position;
     this.DIRECTIONS = { 
@@ -9,6 +8,7 @@ class Entity{
       up: [-1, 0],
       down: [1, 0]
     }
+    this.board = board;
   }
   isDead(){
     return this.life === 0;
@@ -19,6 +19,11 @@ class Entity{
   move(direction){
     if(!this.DIRECTIONS[direction]) throw Error("Invalid Direction");
     let move = this.DIRECTIONS[direction];
+    let [posY, posX] = this.position
+    if(this.board && this.board.grid[posY + move[0]][posX + move[1]] instanceof Wall){
+      document.getElementById('text-body').innerHTML = 'Cannot move through a wall'
+      throw Error("Cannot move through a wall")
+    }
     //Fill in here
       this.position[0] += move[0];
       this.position[1] += move[1];
@@ -47,3 +52,27 @@ class Entity{
   }
 }
 // this.vector = vector;
+
+export class Wall extends Entity{
+  constructor(position, board){
+    super(0, position, board)
+  }
+  move(){
+    //dummy function
+  }
+  moveTo(){
+    //dummy function
+  }
+}
+
+export class CodeBlock extends Entity{
+  constructor(position, board){
+    super(0, position, board)
+  }
+  move(){
+
+  }
+  moveTo(){
+
+  }
+}

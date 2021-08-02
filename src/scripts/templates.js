@@ -28,7 +28,7 @@ return `class Entity{
     this.life = life;
   }
   isDead(){
-    ${gameState.puzzles[2].userSolution}
+    ...
   }
   destroy(){
     this.life = 0;
@@ -53,7 +53,7 @@ const entityStr4 = function(gameState, answer = ''){
       }
     }
     isDead(){
-      ${gameState.puzzles[2].userSolution}
+      ...
     }
     destroy(){
       this.life = 0;
@@ -109,7 +109,21 @@ const gameStr6 = function(gameState, answer = ''){
   }
   `
 }
-const templates = [gameStr0, gameStr1, entityStr2, entityStr3, entityStr4, entityStr5, gameStr6]
+
+const gameStr7 = function(gameState, answer = ''){
+  return `class Wall extends Entity{
+    constructor(position){
+      super(0, position)
+    }
+    ...
+  }
+  
+  function pastTheWalls(grid, light){
+
+  }
+  `
+}
+const templates = [gameStr0, gameStr1, entityStr2, entityStr3, entityStr4, entityStr5, gameStr6, gameStr7]
 
 export function createAnswers(gameState){
   const answers = [

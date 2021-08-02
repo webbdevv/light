@@ -1,7 +1,7 @@
 import chai, { expect, should, assert } from 'chai'
 import Entity from './entity'
 import sinon from '../../node_modules/sinon/pkg/sinon-esm'
-
+import { CodeBlock } from './entity';
 function arraysEqual(a, b) {
   if (a === b) return true;
   if (a == null || b == null) return false;
@@ -143,7 +143,20 @@ function test6(func, game){
 }
 
 function test7(func, game){
-  
+  let error;
+  const light = game.light;
+  let prevPos = [5, 5];
+  let [posY, posX] = light.position
+  try{
+    expect(arraysEqual(light.position, prevPos)).to.equal(true, "Light, you should start at [5, 5]");
+    func(game.board.grid, light);
+    expect(game.board.grid[posY][posX]).to.be.instanceOf(CodeBlock, "Light needs to move to the Code Block at 19, 19");
+  } catch(err){
+    light.position = [5, 5] //reset on failure
+    error = err.message.split(':')[0]
+    console.log(err)
+    return error
+  }
 }
 
-export const testarr = [test0, test1, test2, test3, test4, test5, test6]
+export const testarr = [test0, test1, test2, test3, test4, test5, test6, test7]

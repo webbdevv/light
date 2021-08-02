@@ -8,7 +8,7 @@
   height: 100vh;
   color: $high-emphasis;
   transition: width 300ms ease;
-  z-index: 100;
+  z-index: 1000;
   &:hover{
     width: 16rem;
     .link-text{

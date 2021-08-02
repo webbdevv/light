@@ -175,7 +175,7 @@ a {
   height: 100vh;
   color: rgba(255, 255, 255, 0.87);
   transition: width 300ms ease;
-  z-index: 100;
+  z-index: 1000;
 }
 .navbar:before {
   content: "";

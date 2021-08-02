@@ -55,6 +55,14 @@ let textnodes = [
   {
     id: 13,
     text: 'Wonderful, this is how you will progress as we go on. The red blocks are "code blocks" that you will be prompted to move towards and solve.'
+  },
+  {
+    id: 14,
+    text: `There are walls in the way of your next objective, figure out a way to bypass them... But it's strange, isn't it. These walls look quite alot like you. Figure out a way to move to the square at [19, 19]`
+  },
+  {
+    id: 15,
+    text: "Quite impressive."
   }
 
 ]
