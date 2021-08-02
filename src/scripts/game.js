@@ -13,8 +13,8 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 11, //12
-      currentPuzzle: 5, //6
+      currentPage: 0, //11
+      currentPuzzle: 0, //5
     }
     this.light = new Entity()
     this.board = undefined;
