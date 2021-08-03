@@ -150,7 +150,10 @@ function test7(func, game){
   try{
     expect(arraysEqual(light.position, prevPos)).to.equal(true, "Light, you should start at [5, 5]");
     func(game.board.grid, light);
-    expect(game.board.grid[posY][posX]).to.be.instanceOf(CodeBlock, "Light needs to move to the Code Block at 19, 19");
+    if(game.board.grid[posY][posX] instanceof CodeBlock){
+      return;  
+    }
+    expect(arraysEqual(light.position, [19, 19])).to.equal(true, "Light needs to move to the square at 19, 19");
   } catch(err){
     light.position = [5, 5] //reset on failure
     error = err.message.split(':')[0]

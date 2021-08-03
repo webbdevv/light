@@ -74,10 +74,10 @@ const entityStr5 = function(gameState, answer = ''){
       this.life = life;
       this.position = position;
       this.DIRECTIONS = { 
-        left: [-1, 0],
-        right: [1, 0],
-        up: [0, 1],
-        down: [0, -1]
+        left: [0, -1],
+        right: [0, 1],
+        up: [-1, 0],
+        down: [1, 0]
       }
     }
     isDead(){
@@ -155,6 +155,11 @@ export function createAnswers(gameState){
           movementVector[1]--
         }
       }`,
+      `		grid[19][13] = grid[0][0]
+    grid[19][15] = grid[0][0]
+    grid[19][17] = grid[0][0]
+    light.moveTo([19, 12]);
+    light.moveTo([19, 19]);`,
   ];
   return templates[gameState.currentPuzzle](gameState)
   //add second argument of answers[gameState.currentPuzzle] for auto complete answers

@@ -62,7 +62,11 @@ let textnodes = [
   },
   {
     id: 15,
-    text: "Quite impressive."
+    text: "Quite impressive. That is all for now Light."
+  },
+  {
+    id: 16,
+    text: "Thank you for joining me at this time."
   }
 
 ]

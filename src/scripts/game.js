@@ -13,8 +13,8 @@ export default class Game {
     this.gameState = {
       textNodes: textnodes,
       puzzles: puzzles,
-      currentPage: 0, //11
-      currentPuzzle: 0, //5
+      currentPage: 11, //11
+      currentPuzzle: 5, //5
     }
     this.light = new Entity()
     this.board = undefined;
@@ -89,10 +89,13 @@ export default class Game {
       case 14: //making the walls for the first time
         this.setupPuzzle();
         this.generateWalls();
+        this.board.grid[19][19] = new CodeBlock()
         this.codeMirror.doc.setBookmark({line: 8, ch: 0})
         this.codeMirror.doc.setBookmark({line: 9, ch: 0})
+        if(this.board){
+          this.gridCopy = this.copyGrid(this.board.grid);
+        }
         this.board.htmlGrid[19][19].style.backgroundColor = 'red';
-        this.board.grid[19][19] = new CodeBlock()
     }
   }
 
@@ -118,8 +121,6 @@ export default class Game {
       this.board.grid[13][i] = new Wall([13, i]);
       this.board.htmlGrid[13][i].style.backgroundColor = 'white';
     }
-    
-
   }
 
   copyGrid(source, target = []){
@@ -144,9 +145,9 @@ export default class Game {
     puzzle.template = createAnswers(this.gameState);
 
     if(this.board){
-      debugger
       this.gridCopy = this.copyGrid(this.board.grid);
     }
+
     //setup code block
     this.codeMirror.setValue(puzzle.template);
     document.getElementById('function-header').innerHTML = puzzle.header;
