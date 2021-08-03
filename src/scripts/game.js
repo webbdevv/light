@@ -158,6 +158,10 @@ export default class Game {
     reset.innerHTML = 'Reset';
     reset.addEventListener('click', this.resetCode);
     
+    //setup get answer
+    let answer = document.getElementById('get-answer');
+    answer.innerHTML = "Answer"
+
     //setup submission
     let codeBtn = document.getElementById('submit-code')
     codeBtn.innerHTML = 'Submit';
@@ -207,13 +211,16 @@ export default class Game {
   cleanupPuzzle(){
     //hint cleanup
     document.getElementById('hint').classList.remove('active');
-    
+
     //errors cleanup
     document.getElementById('text-body').classList.remove('error')
     //reset cleanup
     document.getElementById('reset-code').innerHTML = ''
     //submit
     document.getElementById('submit-code').removeEventListener('click', this.submitCode);
+    //Answer
+    let answer = document.getElementById('get-answer');
+    answer.innerHTML = ""
     this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');

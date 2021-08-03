@@ -384,6 +384,19 @@ a {
   bottom: 10px;
   right: 100px;
 }
+.text-box #get-answer {
+  position: absolute;
+  border: none;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: inherit;
+  z-index: 101;
+  bottom: 10px;
+  right: 180px;
+}
 
 .cube {
   width: 35px;
