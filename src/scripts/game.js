@@ -309,10 +309,14 @@ export default class Game {
     if(this.gameState.currentPage === 16){
       //remove from the DOM
       document.querySelector('#board').remove()
-      let message = document.querySelector('.game-message')
-      message.classList.toggle('inactive')
-      message.innerHTML = 'Thank you for playing!'
+      let message = document.getElementById('end-message')
+      message.style.display = 'block'
+      document.getElementById('next-btn').innerHTML = '';
+      document.getElementById('text-sender').innerHTML = '';
+      document.getElementById('text-body').innerHTML = '';
+      return;
     }
+
     this.gameState.currentPage++;
     this.generateText(2);
   }

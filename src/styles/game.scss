@@ -109,3 +109,13 @@
 #hint.active{
   display: block;
 }
+
+#end-message{
+  display: none;
+  left: 190px;
+  top: 320px;
+  color: $high-emphasis;
+  font-size: 1.5rem;
+  font-family: 'Source Code Pro', monospace;
+  position: absolute;
+}
