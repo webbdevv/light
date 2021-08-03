@@ -466,7 +466,7 @@ a {
   padding-bottom: 8px;
 }
 .game-container #text-body {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1rem;
 }
 .game-container #text-body.error {
@@ -484,6 +484,37 @@ a {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+#hint {
+  display: none;
+  z-index: 1000;
+  min-width: 150px;
+  height: 100px;
+  padding: 12px;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #121212;
+  position: relative;
+  top: 10px;
+  left: 100px;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-family: "Source Code Pro", monospace;
+  position: relative;
+}
+#hint:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(187, 134, 252, 0.1);
+  border-radius: 8px;
+}
+
+#hint.active {
+  display: block;
 }
 
 body {

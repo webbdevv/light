@@ -29,6 +29,7 @@ export default class Game {
     this.moveLight = this.moveLight.bind(this);
     this.generateWalls = this.generateWalls.bind(this);
     this.copyGrid = this.copyGrid.bind(this)
+    this.showHint = this.showHint.bind(this);
   }
 
   generateText(interval, err = false, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
@@ -204,6 +205,9 @@ export default class Game {
   }
 
   cleanupPuzzle(){
+    //hint cleanup
+    document.getElementById('hint').classList.remove('active');
+    
     //errors cleanup
     document.getElementById('text-body').classList.remove('error')
     //reset cleanup
@@ -244,6 +248,12 @@ export default class Game {
       document.getElementById('text-body').classList.add('error')
       this.generateText(15, true, err)
     }
+  }
+
+  showHint(){
+    let hint = document.getElementById('hint')
+    hint.classList.toggle('active');
+    hint.innerHTML = this.gameState.puzzles[this.gameState.currentPuzzle].hint
   }
 
   moveLight(prev){

@@ -16,7 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.14.8",
+    "@babel/generator": "^7.14.9",
+    "@babel/parser": "^7.14.9",
     "@babel/preset-env": "^7.14.8",
+    "@babel/traverse": "^7.14.9",
     "babel-loader": "^8.2.2",
     "chai": "^4.3.4",
     "core-js": "^3.15.2",

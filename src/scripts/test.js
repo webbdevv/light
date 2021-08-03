@@ -2,6 +2,7 @@ import chai, { expect, should, assert } from 'chai'
 import Entity from './entity'
 import sinon from '../../node_modules/sinon/pkg/sinon-esm'
 import { CodeBlock } from './entity';
+
 function arraysEqual(a, b) {
   if (a === b) return true;
   if (a == null || b == null) return false;
@@ -100,6 +101,7 @@ function test4(func){
     expect(arraysEqual(entity.position, [1, 0])).to.equal(true, 'Moving right should do accordingly')
       spy('up')
     expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Moving down should do accordingly')
+
   } catch (err){
     error = err.message.split(':')[0]
     console.log(error);
@@ -111,10 +113,24 @@ function test5(func){
   let entity = new Entity()
   let error;
   func = func.bind(entity);
+  let done = false;
+  let wrapper = function(position){
+    setTimeout(() => {
+      debugger
+      if(!done){
+        throw Error("Loop continued infinitely:")
+      } else {
+        return;
+      }
+    }, 2000)
+    func(position)
+  }
   try {
     expect(func).to.not.throw(Error, "Something went wrong with your function")
     expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Without calling move the entity should not move');
-    func([7, 7]);
+    wrapper([7, 7]);
+    done = true;
+    console.log(entity.position)
     expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
     error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
