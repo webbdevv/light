@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     game.play();
     window.game = game;
     document.getElementById('play').style.display = 'none'
-    document.getElementById('info').addEventListener('mouseover', game.showHint);
+    document.getElementById('info').addEventListener('click', game.showHint);
   });
 })
