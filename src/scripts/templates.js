@@ -136,25 +136,29 @@ export function createAnswers(gameState){
     }`,
     `this.position[0] += move[0];
     this.position[1] += move[1];`,
-    `let movementVector = [this.position[0] - position[0], this.position[1] - position[1]];
-      while(movementVector[0] !== 0){
-        if(movementVector[0] < 0){
-          this.move('down');
-          movementVector[0]++
-        } else {
-          this.move('up')
-          movementVector[0]--
-        }
+    `if(this.position[0] === position[0] && this.position[1] === position[1]) return;
+
+    let movementVector = [this.position[0] - position[0], this.position[1] - position[1]];
+    if(movementVector[0] !== 0){
+      if(movementVector[0] < 0){
+        this.move('down');
+        movementVector[0]++;
+      } else {
+        this.move('up');
+        movementVector[0]--;
       }
-      while(movementVector[1] !== 0){
-        if(movementVector[1] < 0){
-          this.move('right');
-          movementVector[1]++ 
-        } else {
-          this.move('left');
-          movementVector[1]--
-        }
-      }`,
+    }
+    moveTo(position);
+    if(movementVector[1] !== 0){
+      if(movementVector[1] < 0){
+        this.move('right');
+        movementVector[1]++;
+      } else {
+        this.move('left');
+        movementVector[1]--;
+      }
+    }
+    moveTo(position);`,
       `grid[19][13] = grid[0][0]
     grid[19][15] = grid[0][0]
     grid[19][17] = grid[0][0]

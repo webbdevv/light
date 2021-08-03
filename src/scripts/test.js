@@ -109,28 +109,19 @@ function test4(func){
   return error
 }
 
-function test5(func){
+function test5(func, game){
   let entity = new Entity()
-  let error;
   func = func.bind(entity);
-  let done = false;
-  let wrapper = function(position){
-    setTimeout(() => {
-      debugger
-      if(!done){
-        throw Error("Loop continued infinitely:")
-      } else {
-        return;
-      }
-    }, 2000)
-    func(position)
-  }
+  let spy = sinon.spy(func);
+  window.moveTo = spy
+  let error;
+
+
   try {
-    expect(func).to.not.throw(Error, "Something went wrong with your function")
     expect(arraysEqual(entity.position, [0, 0])).to.equal(true, 'Without calling move the entity should not move');
-    wrapper([7, 7]);
-    done = true;
-    console.log(entity.position)
+    expect(spy).to.not.throw(Error, "Something went wrong with your function")
+    spy([7, 7]);
+    expect(spy.callCount).to.be.above(1, "moveTo must be called recursively");
     expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
     error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want

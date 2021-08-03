@@ -9,6 +9,7 @@ export default class Entity {
       down: [1, 0]
     }
     this.board = board;
+    this.moveTo = this.moveTo.bind(this);
   }
   isDead(){
     return this.life === 0;
@@ -22,7 +23,7 @@ export default class Entity {
     let [posY, posX] = this.position
     if(this.board && this.board.grid[posY + move[0]][posX + move[1]] instanceof Wall){
       document.getElementById('text-body').innerHTML = 'Cannot move through a wall'
-      throw Error("Cannot move through a wall")
+      throw Error(`Cannot move through a wall at position ${this.board.grid[posY + move[0]][posX + move[1]]}`)
     }
     //Fill in here
       this.position[0] += move[0];
@@ -30,25 +31,28 @@ export default class Entity {
     //
   }
   moveTo(position){
+    if(this.position[0] === position[0] && this.position[1] === position[1]) return;
+
     let movementVector = [this.position[0] - position[0], this.position[1] - position[1]];
-    while(movementVector[0] !== 0){
+    if(movementVector[0] !== 0){
       if(movementVector[0] < 0){
         this.move('down');
-        movementVector[0]++
+        movementVector[0]++;
       } else {
-        this.move('up')
-        movementVector[0]--
+        this.move('up');
+        movementVector[0]--;
       }
     }
-    while(movementVector[1] !== 0){
+    if(movementVector[1] !== 0){
       if(movementVector[1] < 0){
         this.move('right');
-        movementVector[1]++ 
+        movementVector[1]++;
       } else {
         this.move('left');
-        movementVector[1]--
+        movementVector[1]--;
       }
     }
+    this.moveTo(position);
   }
 }
 // this.vector = vector;

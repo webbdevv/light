@@ -46,7 +46,7 @@ let textnodes = [
   },
   {
     id: 11,
-    text: `But moving around one step at a time is inconvenient. Make a way to do it better.`
+    text: `But moving around one step at a time is inconvenient. Make a way to do it better and make it recursive as well. Also, please recursively call moveTo instead of this.moveTo, our tests for this run a bit funky.`
   },
   {
     id: 12,
