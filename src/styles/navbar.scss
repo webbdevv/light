@@ -14,8 +14,10 @@
     .link-text{
       display: block;
       color: rgba($color: #fff, $alpha: 1);
+      cursor: pointer;
     }
     svg{
+      cursor: pointer;
       fill: rgba($color: $primary-purple, $alpha: 1);
       filter: grayscale(0%) opacity(1);
     }

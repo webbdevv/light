@@ -155,7 +155,7 @@ export function createAnswers(gameState){
           movementVector[1]--
         }
       }`,
-      `		grid[19][13] = grid[0][0]
+      `grid[19][13] = grid[0][0]
     grid[19][15] = grid[0][0]
     grid[19][17] = grid[0][0]
     light.moveTo([19, 12]);

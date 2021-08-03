@@ -193,8 +193,10 @@ a {
 .navbar:hover .link-text {
   display: block;
   color: white;
+  cursor: pointer;
 }
 .navbar:hover svg {
+  cursor: pointer;
   fill: #bb86fc;
   filter: grayscale(0%) opacity(1);
 }
@@ -447,7 +449,7 @@ a {
   display: none;
 }
 .game-container #game-textbox {
-  min-height: 120px;
+  height: 135px;
   padding: 12px 0;
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
@@ -462,6 +464,10 @@ a {
 .game-container #game-textbox #text-sender {
   display: inline-block;
   padding-bottom: 8px;
+}
+.game-container #text-body {
+  font-size: 0.95rem;
+  line-height: 1rem;
 }
 .game-container #text-body.error {
   color: #f44336;
