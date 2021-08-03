@@ -123,6 +123,8 @@ function test5(func, game){
     spy([7, 7]);
     expect(spy.callCount).to.be.above(1, "moveTo must be called recursively");
     expect(arraysEqual(entity.position, [7, 7])).to.equal(true, 'Movement did not work as expected')
+    spy([3, 3]);
+    expect(arraysEqual(entity.position, [3, 3])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
     error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
     console.log(err);

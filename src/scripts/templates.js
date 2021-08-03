@@ -148,7 +148,6 @@ export function createAnswers(gameState){
         movementVector[0]--;
       }
     }
-    moveTo(position);
     if(movementVector[1] !== 0){
       if(movementVector[1] < 0){
         this.move('right');
