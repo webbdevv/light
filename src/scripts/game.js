@@ -171,7 +171,9 @@ export default class Game {
 
   resetCode(){
     let template = createAnswers(this.gameState);
-    this.board.grid = this.copyGrid(this.gridCopy);
+    if(this.board){
+      this.board.grid = this.copyGrid(this.gridCopy);
+    }
     this.codeMirror.setValue(template);
     //reset bookmarks
     switch(this.gameState.currentPage){
