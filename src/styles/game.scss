@@ -98,12 +98,13 @@
   padding: 12px;
   color: $high-emphasis;
   background-color: #121212;
-  top: -100px;
-  left: 170px;
+  top: 380px;
+  left: 225px;
   font-size: 1rem;
   line-height: 1.2rem;
   font-family: 'Source Code Pro', monospace;
-  @include overlay(.1, 8px, $primary-purple);
+  @include overlay(.14, 8px, $primary-purple);
+  position: absolute;
 }
 #hint.active{
   display: block;

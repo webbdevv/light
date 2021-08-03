@@ -507,12 +507,13 @@ a {
   padding: 12px;
   color: rgba(255, 255, 255, 0.87);
   background-color: #121212;
-  top: -100px;
-  left: 170px;
+  top: 380px;
+  left: 225px;
   font-size: 1rem;
   line-height: 1.2rem;
   font-family: "Source Code Pro", monospace;
   position: relative;
+  position: absolute;
 }
 #hint:before {
   content: "";
@@ -521,7 +522,7 @@ a {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(187, 134, 252, 0.1);
+  background: rgba(187, 134, 252, 0.14);
   border-radius: 8px;
 }
 
