@@ -16,7 +16,7 @@ export default class Game {
       currentPage: 0, //11
       currentPuzzle: 0, //5
     }
-    this.light = new Entity()
+    this.light = new Entity();
     this.board = undefined;
     this.gridCopy = [];
     this.nextPage = this.nextPage.bind(this);

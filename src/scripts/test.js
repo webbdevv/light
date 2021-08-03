@@ -28,7 +28,6 @@ function test0(func, args){
     expect(a).to.equal(true, "Those are not equal")
   } catch(err){
     error = err.message.split(":")[0];
-    console.log(error)
   }
   return error
 }
@@ -43,7 +42,6 @@ function test1(func){
     expect(spy.callCount).to.equal(2);
   } catch(err){
     error = err.message.split(":")[0]
-    console.log(err)
   }
   return error
 }
@@ -60,7 +58,6 @@ function test2(func){
     expect(spy()).to.equal(true, "Entities should die when they are at 0 life");
   } catch (err){
     error = err.message.split(":")[0]
-    console.log(err)
   }
   return error;
 }
@@ -80,7 +77,6 @@ function test3(func){
     expect(spy.callCount).to.be.below(5, "Recursion please");
   } catch(err){
     error = err.message.split(":")[0]
-    console.log(error)
   }
   return error;
 }
@@ -104,7 +100,6 @@ function test4(func){
 
   } catch (err){
     error = err.message.split(':')[0]
-    console.log(error);
   }
   return error
 }
@@ -127,7 +122,6 @@ function test5(func, game){
     expect(arraysEqual(entity.position, [3, 3])).to.equal(true, 'Movement did not work as expected')
   } catch(err){
     error = err.message.split(':')[0] //Chai returns error messages split by colon, first one is string provided so that's what we want
-    console.log(err);
   }
   return error;
 }
@@ -146,7 +140,6 @@ function test6(func, game){
   } catch(err){
     light.position = [0, 0] //reset on failure
     error = err.message.split(':')[0]
-    console.log(err);
     return error
   }
 }
@@ -166,7 +159,6 @@ function test7(func, game){
   } catch(err){
     light.position = [5, 5] //reset on failure
     error = err.message.split(':')[0]
-    console.log(err)
     return error
   }
 }
