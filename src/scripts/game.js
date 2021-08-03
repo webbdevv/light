@@ -30,6 +30,7 @@ export default class Game {
     this.generateWalls = this.generateWalls.bind(this);
     this.copyGrid = this.copyGrid.bind(this)
     this.showHint = this.showHint.bind(this);
+    this.showAnswer = this.showAnswer.bind(this);
   }
 
   generateText(interval, err = false, text = this.gameState.textNodes[this.gameState.currentPage].text, idx = 0, target = document.getElementById('text-body')){
@@ -221,6 +222,7 @@ export default class Game {
     //Answer
     let answer = document.getElementById('get-answer');
     answer.innerHTML = ""
+
     this.gameState.currentPuzzle++;
     document.getElementById('function-header').innerHTML = '';
     this.codeMirror.setValue('');
@@ -257,6 +259,12 @@ export default class Game {
     }
   }
 
+  showAnswer(){
+    let hint = document.getElementById('hint')
+    hint.classList.add('active');
+    hint.innerHTML = this.gameState.puzzles[this.gameState.currentPuzzle].answer
+  }
+   
   showHint(){
     let hint = document.getElementById('hint')
     hint.classList.toggle('active');
