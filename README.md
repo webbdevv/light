@@ -13,23 +13,17 @@
   * Users will be able to reset the game if necessary.
   * Users will have a code block shown to them on the right panel of the screen when they interact with a function box, they will be able to submit and edit this code block.
 
-## Wireframe
-  Extremely simple layout
-  Game will take up ~60% viewport width on left side of screen.
-  Code block / text will be open on the right side of the screen
-  ### Layout
-  ![Screen Shot 2021-07-26 at 8 24 48 AM](https://user-images.githubusercontent.com/67240903/127015572-f28eedfd-30ef-4d63-bca4-ca5f6e77c44b.png)
-  ### Example Puzzle
-  https://wireframe.cc/eyOkJ3
-  Users will be blocked from reaching the block on the top left quadrant and will need to create a function to rotate the grid that the player stands on to bypass the walls.
-  
-## Schedule
-  * Monday - Setup project including Block, Scene, and Function/Action classes. Create setup screen where user will create their first function. This will be global.
-  * Tuesday - Finish splash/initial setup page and create first puzzle. Figure out how to use Function constructor to do this
-  * Wednesday - Build out and style gameplay, allow users to move throughout the box and figure out text display functionality
-  * Thursday - Add more puzzles and flesh out styling
-  * Friday - Polish up design
-
+## About
+  ### Design
+  ![image](https://user-images.githubusercontent.com/67240903/130292560-4a200b7e-7237-4147-bd43-5279606c83f1.png)\
+  Dark theme separated by game element and coding portion. Responsive navbar that pulls out of left panel.
+  ### Coding
+  ![coding_walkthrough](https://user-images.githubusercontent.com/67240903/130292923-ed6dc15c-17ec-4898-bca0-e519e06ed564.gif)\
+  Coding with formatting, resetting, copy/paste, and coloring functionality. Lines not meant to be changed by user are set to readonly. Clicking answer shows the answer to the current problem. Submitting erases contents of the code block.
+  ### Text/Story
+  ![gameplay_walkthrough](https://user-images.githubusercontent.com/67240903/130293404-49412eed-f250-41b9-9156-238b371b095b.gif)\
+  Story is integrated with coding. Players complete coding challenges to advance forward and error messages show up inside the text box as well as inside the chrome console.
+  FYI: The visible grid is a result of converting qt movie to gif and is not present in the actual game.
 ## Libraries
   Three.js
-  Mocha testing framework
+  Chai/Mocha testing
