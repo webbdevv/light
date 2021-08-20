@@ -13,23 +13,6 @@
   * Users will be able to reset the game if necessary.
   * Users will have a code block shown to them on the right panel of the screen when they interact with a function box, they will be able to submit and edit this code block.
 
-## Wireframe
-  Extremely simple layout
-  Game will take up ~60% viewport width on left side of screen.
-  Code block / text will be open on the right side of the screen
-  ### Layout
-  ![Screen Shot 2021-07-26 at 8 24 48 AM](https://user-images.githubusercontent.com/67240903/127015572-f28eedfd-30ef-4d63-bca4-ca5f6e77c44b.png)
-  ### Example Puzzle
-  https://wireframe.cc/eyOkJ3
-  Users will be blocked from reaching the block on the top left quadrant and will need to create a function to rotate the grid that the player stands on to bypass the walls.
-  
-## Schedule
-  * Monday - Setup project including Block, Scene, and Function/Action classes. Create setup screen where user will create their first function. This will be global.
-  * Tuesday - Finish splash/initial setup page and create first puzzle. Figure out how to use Function constructor to do this
-  * Wednesday - Build out and style gameplay, allow users to move throughout the box and figure out text display functionality
-  * Thursday - Add more puzzles and flesh out styling
-  * Friday - Polish up design
-
 ## Libraries
   Three.js
-  Mocha testing framework
+  Chai/Mocha testing
