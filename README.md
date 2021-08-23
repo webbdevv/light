@@ -27,10 +27,10 @@
   
 ## Code Snippets
   ### Testing
-  ![image](https://user-images.githubusercontent.com/67240903/130485156-3fedb573-0680-4a2f-8b58-e08805614d94.png)
+  ![image](https://user-images.githubusercontent.com/67240903/130485156-3fedb573-0680-4a2f-8b58-e08805614d94.png)\
   Test numbers correspond with ids attached to each puzzle. The tests check for specific results before and after running the user created function.
   ### Text Stream
-  ![image](https://user-images.githubusercontent.com/67240903/130485561-026084ef-a8b6-4dad-a491-67a6e1b76a8d.png)
+  ![image](https://user-images.githubusercontent.com/67240903/130485561-026084ef-a8b6-4dad-a491-67a6e1b76a8d.png)\
   Text stream created by recursive function that grabs from a prefilled list of textnodes that move the story forward. This function is also used to generate error messages that appear in the text box.
   
 ## Libraries
