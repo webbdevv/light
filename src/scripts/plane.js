@@ -17,7 +17,7 @@ export default class Plane {
 
   setup(){
     let game = document.getElementById('game')
-    this.renderer.setSize( 700, 700 );
+    this.renderer.setSize( 600, 600 );
     game.appendChild( this.renderer.domElement );
     
     const geometry = new THREE.BoxGeometry(1, 1, 1);
