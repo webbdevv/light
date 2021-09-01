@@ -1,6 +1,6 @@
 .cube{
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-bottom: 1px solid white;
   border-right: 1px solid white;
   // background: #fff;
@@ -16,8 +16,8 @@
   flex-direction: column;
   #game {
     @include overlay(.05, 10px);
-    width: 701px;
-    height: 701px;
+    width: 601px;
+    height: 601px;
     border-radius: 20px;
   }
   #board{
