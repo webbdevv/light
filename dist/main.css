@@ -479,8 +479,8 @@ a {
   padding-bottom: 8px;
 }
 .game-container #text-body {
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: 80%;
+  line-height: 0.5rem;
 }
 .game-container #text-body.error {
   color: #f44336;

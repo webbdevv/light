@@ -131,8 +131,8 @@ export function createAnswers(gameState){
     `return 42`,
     `return this.life === 0`, 
     `if(entities.length > 0){
-        entities.pop().destroy()
-        destroyAll(entities)
+        entities.pop().destroy();
+        destroyAll(entities);
     }`,
     `this.position[0] += move[0];
     this.position[1] += move[1];`,
