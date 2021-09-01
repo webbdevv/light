@@ -22,8 +22,8 @@ export default [
     header: `Enti-cide?`,
     hint: `Make sure to call destroyAll recursively`,
     answer: `if(entities.length > 0){
-        entities.pop().destroy()
-        destroyAll(entities)
+        entities.pop().destroy();
+        destroyAll(entities);
     }`
   },
   {

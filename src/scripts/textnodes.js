@@ -33,8 +33,7 @@ let textnodes = [
   },
   {
     id: 8,
-    text: `Ah refreshing, entropy reigns again. 
-    NB: That function will come in handy in the future. Pardon my excessive pretentiousness.`
+    text: `Ah refreshing, entropy reigns again.` 
   },
   {
     id: 9,
